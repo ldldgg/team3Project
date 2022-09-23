@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import spms.dao.BoardDao;
 import spms.dto.BoardDto;
+import spms.dto.MemberDto;
 
 
 @WebServlet(value="/board/add")
@@ -34,10 +36,10 @@ public class BoardAddServlet extends HttpServlet {
 		
 		Connection conn = null;
 		
-		String writer = req.getParameter("writer");
 		String subject = req.getParameter("subject");
-		String email = req.getParameter("email");
+		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
+		String email = req.getParameter("email");
 		String pwd = req.getParameter("pwd");
 		
 		try {
@@ -46,15 +48,21 @@ public class BoardAddServlet extends HttpServlet {
 			
 			BoardDto boardDto = new BoardDto();
 			
-			boardDto.setWriter(writer);
 			boardDto.setSubject(subject);
+			boardDto.setWriter(writer);
 			boardDto.setContent(content);
 			
+			BoardDao boardDao = new BoardDao();
 			
+			boardDao.setConnection(conn);
+			int result = boardDao.addBoard(boardDto, email, pwd);
 			
-			
+			if(result == 0) {
+				System.out.println("게시글 작성에 실패했습니다");
+			}
+			resp.sendRedirect("./list?page=1");
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}

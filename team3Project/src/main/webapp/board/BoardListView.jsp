@@ -91,7 +91,7 @@
 		</div>
 		<div id="pagemoveDiv">
 			<div id="cre_board">
-				<input type="button" value="글작성">
+				<input type="button" value="글작성" onclick="location.href='./add'">
 			</div>
 			<div id="btnDiv">
 			
@@ -100,8 +100,15 @@
 						onclick="location.href='./list?page=${page-1}'">
 				</c:if>
 				<c:forEach begin="1" end="${boardList.size()/10+0.9}" var="i">
+					<c:if test="${page eq i}">
+						<input type="button" value="${i}"
+							onclick="location.href='./list?page=${i}'"
+							style="color: red;">
+					</c:if>
+					<c:if test="${page ne i}">
 						<input type="button" value="${i}"
 							onclick="location.href='./list?page=${i}'">
+					</c:if>
 				</c:forEach>
 				<c:if test="${page < boardList.size()/10}">
 					<input type="button" value="다음>"

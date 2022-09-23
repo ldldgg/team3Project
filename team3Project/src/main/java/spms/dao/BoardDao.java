@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import spms.dto.BoardDto;
+import spms.dto.MemberDto;
 
 public class BoardDao {
 
@@ -16,7 +17,7 @@ public class BoardDao {
 		this.connection = conn;
 	}
 
-	public ArrayList<BoardDto> selectList() throws Exception{
+	public ArrayList<BoardDto> BoardList() throws Exception{
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -74,6 +75,65 @@ public class BoardDao {
 				}
 			}
 		}
+		
+	}
+
+	public int addBoard(BoardDto boardDto, String email, String pwd) throws Exception{
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		try {
+//			sql = "SELECT NICKNAME"
+//					+ " FROM MEMBERS"
+//					+ " WHERE EMAIL=?"
+//					+ " AND PWD=?";
+//			
+//			pstmt = connection.prepareStatement(sql);
+//			
+//			pstmt.setString(1, email);
+//			pstmt.setString(2, pwd);
+//			
+//			rs = pstmt.executeQuery();
+//			
+//			if(rs.next()) {
+				sql = "INSERT INTO NOTICEBOARD"
+						+ "(BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT)"
+						+ "VALUES(NOTICEBOARD_BNO_SEQ.nextval,?,?,?,SYSDATE,0)";
+				
+				pstmt = connection.prepareStatement(sql);
+				
+				pstmt.setString(1, boardDto.getSubject());
+				pstmt.setString(2, boardDto.getWriter());
+				pstmt.setString(3, boardDto.getContent());
+				
+				return pstmt.executeUpdate();
+//			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			throw e;
+		} finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}
+		
+//		return 0;
 		
 	}
 	
