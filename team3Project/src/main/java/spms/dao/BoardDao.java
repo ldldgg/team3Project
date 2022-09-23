@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 import spms.dto.BoardDto;
 
@@ -22,9 +23,9 @@ public class BoardDao {
 		
 		String sql = "";
 		
-		sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, TO_CHAR(CRE_DATE, 'YYYY/MM/DD') CRE_DATE, VIEW_COUNT"
+		sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
 			+ " FROM NOTICEBOARD"
-			+ " ORDER BY BNO ASC";
+			+ " ORDER BY BNO DESC";
 		
 		try {
 			
@@ -37,19 +38,17 @@ public class BoardDao {
 			int no = 0;
 			String subject = "";
 			String writer = "";
-			String content = "";
-			String cre_date = "";
+			Date cre_date = null;
 			int view_count = 0;
 			
 			while(rs.next()) {
 				no = rs.getInt("BNO");
 				subject = rs.getString("SUBJECT");
 				writer = rs.getString("WRITER");
-				content = rs.getString("CONTENT");
-				cre_date = rs.getString("CRE_DATE");
+				cre_date = rs.getDate("CRE_DATE");
 				view_count = rs.getInt("VIEW_COUNT");
 				
-				boardList.add(new BoardDto(no, subject, writer, content, cre_date, view_count));
+				boardList.add(new BoardDto(no, subject, writer, cre_date, view_count));
 			}
 			
 			return boardList;

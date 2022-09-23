@@ -68,7 +68,8 @@
 
 	<div id="rootDiv">
 		<div id="topDiv">
-			<h1>감자talk</h1>
+			<h1>3팀 게시판	</h1>
+			<a href="../auth/login">로그아웃</a>
 		</div>
 		<div id="tableDiv">
 			<table>
@@ -78,7 +79,7 @@
 					<th id="dateTh">날짜</th>
 					<th id="viewCountTh">조회수</th>
 				</tr>
-				<c:forEach var="board" items="${boardList}" begin="0" end="9">
+				<c:forEach var="board" items="${boardList}" begin="${(page-1)*10}" end="${page*10-1}">
 					<tr>
 						<td class="subject"><a href="#">${board.subject}</a></td>
 						<td class="infoTd">${board.writer}</td>
@@ -93,14 +94,20 @@
 				<input type="button" value="글작성">
 			</div>
 			<div id="btnDiv">
-				<input type="button" value="<이전">
-				<c:forEach begin="1" end="${boardList.size()/10+1}" var="i">
-
-						<input type="button" value="${i}">
-
-
+			
+				<c:if test="${page > 1}">
+					<input type="button" value="<이전" 
+						onclick="location.href='./list?page=${page-1}'">
+				</c:if>
+				<c:forEach begin="1" end="${boardList.size()/10+0.9}" var="i">
+						<input type="button" value="${i}"
+							onclick="location.href='./list?page=${i}'">
 				</c:forEach>
-				<input type="button" value="다음>">
+				<c:if test="${page < boardList.size()/10}">
+					<input type="button" value="다음>"
+						onclick="location.href='./list?page=${page+1}'">
+				</c:if>
+					
 			</div>
 			
 		

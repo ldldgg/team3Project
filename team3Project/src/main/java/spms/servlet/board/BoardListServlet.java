@@ -27,6 +27,10 @@ public class BoardListServlet extends HttpServlet{
 		
 		Connection conn = null;
 		
+		int page = 0;
+		
+		page = Integer.parseInt(req.getParameter("page"));
+		
 		try {
 			
 			ServletContext sc = this.getServletContext();
@@ -39,6 +43,7 @@ public class BoardListServlet extends HttpServlet{
 			
 			boardList = (ArrayList<BoardDto>)boardDao.selectList();
 			
+			req.setAttribute("page", page);
 			req.setAttribute("boardList", boardList);
 			
 			RequestDispatcher rd =

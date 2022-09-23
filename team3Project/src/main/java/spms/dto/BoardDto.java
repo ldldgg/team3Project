@@ -1,19 +1,31 @@
 package spms.dto;
 
+import java.util.Date;
+
 public class BoardDto {
 
 	private int bno = 0;
 	private String subject = "";
 	private String writer = "";
 	private String content = "";
-	private String cre_date = "";
+	private Date cre_date = null;
 	private int view_count = 0;
 	
 	public BoardDto() {
 		super();
 	}
 
-	public BoardDto(int bno, String subject, String writer, String content, String cre_date, int view_count) {
+	public BoardDto(int bno, String subject, String writer, Date cre_date, int view_count) {
+		super();
+		this.bno = bno;
+		this.subject = subject;
+		this.writer = writer;
+		this.cre_date = cre_date;
+		this.view_count = view_count;
+	}
+
+
+	public BoardDto(int bno, String subject, String writer, String content, Date cre_date, int view_count) {
 		super();
 		this.bno = bno;
 		this.subject = subject;
@@ -55,11 +67,11 @@ public class BoardDto {
 		this.content = content;
 	}
 
-	public String getCre_date() {
+	public Date getCre_date() {
 		return cre_date;
 	}
 
-	public void setCre_date(String cre_date) {
+	public void setCre_date(Date cre_date) {
 		this.cre_date = cre_date;
 	}
 
