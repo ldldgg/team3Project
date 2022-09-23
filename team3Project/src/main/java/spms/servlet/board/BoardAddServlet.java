@@ -20,6 +20,8 @@ public class BoardAddServlet extends HttpServlet {
 		
 		
 		
+		
+		
 	}
 	
 	@Override
