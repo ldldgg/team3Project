@@ -69,7 +69,7 @@
 	<div id="rootDiv">
 		<div id="topDiv">
 			<h1>3팀 게시판	</h1>
-			<a href="../auth/login">로그아웃</a>
+			<a href="../auth/logout">로그아웃</a>
 		</div>
 		<div id="tableDiv">
 			<table>
