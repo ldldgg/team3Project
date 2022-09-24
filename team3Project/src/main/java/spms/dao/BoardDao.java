@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import spms.dto.BoardDto;
-import spms.dto.MemberDto;
 
 public class BoardDao {
 
@@ -17,7 +16,7 @@ public class BoardDao {
 		this.connection = conn;
 	}
 
-	public ArrayList<BoardDto> BoardList() throws Exception{
+	public ArrayList<BoardDto> boardList() throws Exception{
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -100,14 +99,15 @@ public class BoardDao {
 //			
 //			if(rs.next()) {
 				sql = "INSERT INTO NOTICEBOARD"
-						+ "(BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT)"
-						+ "VALUES(NOTICEBOARD_BNO_SEQ.nextval,?,?,?,SYSDATE,0)";
+						+ "(BNO, EMAIL, SUBJECT, WRITER, CONTENT, CRE_DATE, MOD_DATE, VIEW_COUNT)"
+						+ "VALUES(NOTICEBOARD_BNO_SEQ.nextval,?,?,?,?,SYSDATE,SYSDATE,0)";
 				
 				pstmt = connection.prepareStatement(sql);
 				
-				pstmt.setString(1, boardDto.getSubject());
-				pstmt.setString(2, boardDto.getWriter());
-				pstmt.setString(3, boardDto.getContent());
+				pstmt.setString(1, email);
+				pstmt.setString(2, boardDto.getSubject());
+				pstmt.setString(3, boardDto.getWriter());
+				pstmt.setString(4, boardDto.getContent());
 				
 				return pstmt.executeUpdate();
 //			}
@@ -134,6 +134,68 @@ public class BoardDao {
 		}
 		
 //		return 0;
+		
+	}
+	
+	public BoardDto boardSelectView(int no) throws Exception {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		
+		sql = "SELECT WRITER, EMAIL, SUBJECT, CONTENT"
+				+ " FROM NOTICEBOARD"
+				+ " WHERE BNO=?";
+		
+		String writer = "";
+		String email = "";
+		String subject = "";
+		String content = "";
+		
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			
+			BoardDto boardDto = new BoardDto();
+			
+			if(rs.next()) {
+				writer = rs.getString("WRITER");
+				email = rs.getString("EMAIL");
+				subject = rs.getString("SUBJECT");
+				content = rs.getString("CONTENT");
+				
+				boardDto.setWriter(writer);
+				boardDto.setEmail(email);
+				boardDto.setSubject(subject);
+				boardDto.setContent(content);
+			}
+			
+			return boardDto;
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			if(rs != null) {
+				try {
+					rs.close();
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		
 	}
 	

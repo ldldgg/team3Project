@@ -24,8 +24,9 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		Connection conn = null;
 		
+		int no = Integer.parseInt(req.getParameter("no"));
+		
 		try {
-			
 			
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");
@@ -33,8 +34,9 @@ public class BoardUpdateServlet extends HttpServlet {
 			BoardDao boardDao = new BoardDao();
 			boardDao.setConnection(conn);
 			
+			BoardDto boardDto = boardDao.boardSelectView(no);
 			
-			
+			req.setAttribute("board", boardDto);
 			
 			RequestDispatcher rd =
 					req.getRequestDispatcher("./BoardSelectView.jsp");

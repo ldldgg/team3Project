@@ -9,6 +9,7 @@
 <style type="text/css">
 	
 	#rootDiv{
+		width: 700px;
 	}
 	#titleTr {
 		background-color: #F1F1F3;
@@ -43,7 +44,7 @@
 	}
 
 	table{
-		width: 700px;
+		width: 100%;
 		border-top: 1px solid #8C8C8C;
 		border-bottom: 1px solid #8C8C8C;
  		border-collapse: collapse; 
@@ -81,7 +82,7 @@
 				</tr>
 				<c:forEach var="board" items="${boardList}" begin="${(page-1)*10}" end="${page*10-1}">
 					<tr>
-						<td class="subject"><a href="#">${board.subject}</a></td>
+						<td class="subject"><a href="./update?no=${board.bno}">${board.subject}</a></td>
 						<td class="infoTd">${board.writer}</td>
 						<td class="infoTd">${board.cre_date}</td>
 						<td class="infoTd">${board.view_count}</td>
