@@ -1,7 +1,6 @@
 package spms.servlet.auth;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
@@ -11,11 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import javafx.scene.control.Alert;
 import spms.dao.AuthDao;
-import spms.dto.MemberDto;
 
 
 @WebServlet(value = "/auth/findId")
