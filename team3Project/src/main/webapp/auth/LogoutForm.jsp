@@ -18,7 +18,10 @@
 	</head>
 	
 	<body>
-		
+		<form action="./logout" method="post">
+		이름:	${member.mname} <br>
+		이메일:	${member.email} <br>
 		<input type="submit" value="로그아웃">
+		</form>
 	</body>
 </html>

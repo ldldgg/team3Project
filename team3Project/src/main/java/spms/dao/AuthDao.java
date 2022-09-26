@@ -26,7 +26,8 @@ public class AuthDao {
 		sql += " WHERE ID = ? AND PWD = ?";
 
 		String name = "";
-
+		String email = "";
+		String nickname = "";
 		try {
 
 			pstmt = connecion.prepareStatement(sql);
@@ -39,12 +40,15 @@ public class AuthDao {
 			if (rs.next()) {
 				id = rs.getString("id");
 				name = rs.getString("mname");
-
+				email = rs.getString("email");
+				nickname = rs.getString("nickname");
+				
 				MemberDto memberDto = new MemberDto();
 
 				memberDto.setId(id);
 				memberDto.setMname(name);
-
+				memberDto.setEmail(email);
+				memberDto.setNickname(nickname);
 				// 회원 정보 조회 데이터
 				return memberDto;
 			}
