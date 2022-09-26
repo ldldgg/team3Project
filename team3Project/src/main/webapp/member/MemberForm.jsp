@@ -26,6 +26,7 @@
 	         		<td class='noticeTd'>아래 항목을 모두 필수로 입력해주세요.</td>
 	         	</tr>
 	         </table>
+	         
 	         <div class='allCheckDiv'>
 		         <div class='termsTilte'>
 					 <input class='tiltecheckBoxInput' type='checkbox'>
@@ -52,18 +53,18 @@
 					 <label class='checkLabel'>이벤트/쇼핑혜택 이메일 수신 <strong id='adsTermsStrong'>(선택)</strong></label><br>
 				 </div>
 			 </div>
-			 
+			 <form action='./add' method='post'>
 	         <div class='inputDiv_warp'>
 	           
 	            <div class='email_Input'>
 	               <label>이메일 주소</label>
-	               <input type='text' placeholder='이메일 주소 입력'>
+	               <input type='text' name='email' placeholder='이메일 주소 입력'>
 	               <p>가입 완료를 위한 이메일 인증이 진행되니 정확한 이메일 주소를 입력해주시기 바랍니다.</p>
 	            </div>
 	            
 	            <div class='id_Input'>
 	               <label>아이디</label>
-	               <input type='text' placeholder='영문 4자 이상, 최대 20자'>
+	               <input type='text' name='id' placeholder='영문 4자 이상, 최대 20자'>
 	            </div>
 	            
 	            <div class='password_input'>
@@ -73,22 +74,23 @@
 	            
 	            <div class='ck_password_input'>
 	               <label>비밀번호 확인</label>
-	               <input type='text' placeholder='숫자, 영문, 특수문자 포함 최소 8자 이상'>
+	               <input type='text' name='pwd' placeholder='숫자, 영문, 특수문자 포함 최소 8자 이상'>
 	            </div>
 	            
 	            <div class='name_input'>
 	               <label>이름</label>
-	               <input type='text' placeholder='한글 8자, 영문 16자 까지 가능'>
+	               <input type='text' name='mname' placeholder='한글 8자, 영문 16자 까지 가능'>
 	            </div>
 	            
 	            <div class='nickName_input'>
 	               <label>닉네임</label>
-	               <input type='text' placeholder='한글 8자, 영문 16자 까지 가능'>
+	               <input type='text' name='nickname' placeholder='한글 8자, 영문 16자 까지 가능'>
 	            </div>
 	            
 	         </div>
 	       
-	         <button class='join_btn' onclick="">회원가입</button>
+	         <input type='submit' class='join_btn' onclick=click(); value='회원가입'>
+	         </form>
 	         
 	         <div class='join_footer'>
 	               Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
