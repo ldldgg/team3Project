@@ -5,10 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<script src='./script/MemberForm.js'></script>
-<!-- <script> function mm(){
-	alert("야");
-}</script> -->
+<script type="text/javaScript" src='./script/MemberForm.js'></script>
 <link rel='stylesheet' type='text/css' href='./css/MemberForm.css'>
 </head>
 
@@ -92,10 +89,10 @@
 	            
 	         </div>
 	       
-	         <input type="button" class='join_btn' onclick="mm();" value='회원가입'>
+	         <input type="button" id="joinBtn" class='join_btn' onclick="mm();" value='회원가입'>
 	         </form>
 	         
-	         <jsp:include page="/Footer.jsp"/>
+	         <jsp:include page="/footer.jsp"/>
 	         
 	      </div>
 	</body> 
