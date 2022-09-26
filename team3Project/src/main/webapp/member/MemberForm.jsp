@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <script src='./script/MemberForm.js'></script>
+<!-- <script> function mm(){
+	alert("야");
+}</script> -->
 <link rel='stylesheet' type='text/css' href='./css/MemberForm.css'>
 </head>
 
@@ -89,12 +92,10 @@
 	            
 	         </div>
 	       
-	         <input type='submit' class='join_btn' onclick=click(); value='회원가입'>
+	         <input type="button" class='join_btn' onclick="mm();" value='회원가입'>
 	         </form>
 	         
-	         <div class='join_footer'>
-	               Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-	        </div>
+	         <jsp:include page="/Footer.jsp"/>
 	         
 	      </div>
 	</body> 

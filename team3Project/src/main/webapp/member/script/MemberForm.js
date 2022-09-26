@@ -1,3 +1,4 @@
-function click(){
-	console.log("펑션되나");
+
+function mm(){
+	alert("어쩌라고");
 }

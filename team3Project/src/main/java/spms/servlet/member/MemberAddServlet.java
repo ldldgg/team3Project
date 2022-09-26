@@ -38,13 +38,13 @@ public class MemberAddServlet extends HttpServlet {
 			String id = req.getParameter("id");
 			String email = req.getParameter("email");
 			String pwd = req.getParameter("pwd");
-			String name = req.getParameter("mname");
+			String mname = req.getParameter("mname");
 			String nickname = req.getParameter("nickname");
 			
 			memberDto.setId(id);
 			memberDto.setEmail(email);
 			memberDto.setPwd(pwd);
-			memberDto.setMname(name);
+			memberDto.setMname(mname);
 			memberDto.setNickname(nickname);
 			
 			ServletContext sc = this.getServletContext();
