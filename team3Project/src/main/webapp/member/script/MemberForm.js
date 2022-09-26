@@ -16,7 +16,17 @@
 	
 	}//allFnc 끝
 	
-	function joinFnc(){
+	function inputCheckFnc(){
+		var emailInput = document.getElementsByName('email');
+		var emailP = document.getElementById("emailP");
+		if(emailInput.value == null){
+			emailP.style.display = "block";
+			emailP.textContent = "이메일을 입력해 주세요";
+		}
+		
+	}
+	
+	function joinFnc(){		//회원가입 버튼 클릭시 doPost로 이동
 		document.join_confirm.submit();	
 	}
 		
@@ -27,7 +37,9 @@
 			
 			var joinBtn = document.getElementById("joinBtn");
 			joinBtn.addEventListener('click', joinFnc);
-		
+			
+			var emailInput = document.getElementsByName('email');
+			emailInput.addEventListener('focus', inputCheckFnc);
 		
 		
 		}//window.onload function 끝	

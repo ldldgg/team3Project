@@ -58,8 +58,10 @@
 	           
 	            <div class='email_Input'>
 	               <label>이메일 주소</label>
-	               <input type='text' name='email' placeholder='이메일 주소 입력'>
+	               <input type='text' name='email' placeholder='이메일 주소 입력' value="">
+	               <p id='emailP' style="display: none"></p>
 	               <p>가입 완료를 위한 이메일 인증이 진행되니 정확한 이메일 주소를 입력해주시기 바랍니다.</p>
+	               
 	            </div>
 	            
 	            <div class='id_Input'>
