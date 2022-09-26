@@ -50,7 +50,8 @@
 </head>
 <body>
 	<div id="rootDiv">
-	
+		<jsp:include page="/header.jsp"/>
+		
 		<div id="titleDiv"><h2>Write</h2></div>
 		
 		<div id="tableDiv">
@@ -66,7 +67,7 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Email</td>
-						<td><input type="text" value="${board.email}" readonly name="email"></td>
+						<td><input type="email" value="${board.email}" readonly name="email"></td>
 					</tr>	
 					<tr>
 						<td class="titleTd">Content</td>
@@ -76,7 +77,7 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Password</td>
-						<td><input type="password" name="pwd"></td>
+						<td><input type="password" name="pwd" required></td>
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">
@@ -90,7 +91,7 @@
 				</table>
 			</form>
 		</div>
-		
+		<jsp:include page="/footer.jsp"/>
 	</div>
 </body>
 </html>

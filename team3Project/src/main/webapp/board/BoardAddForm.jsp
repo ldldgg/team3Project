@@ -47,9 +47,11 @@
 	
 </style>
 
+
 </head>
 <body>
 	<div id="rootDiv">
+		<jsp:include page="/header.jsp"/>
 	
 		<div id="titleDiv"><h2>Write</h2></div>
 		
@@ -66,7 +68,7 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Email</td>
-						<td><input type="text" value="${member.email}" readonly name="email"></td>
+						<td><input type="email" value="${member.email}" readonly name="email"></td>
 					</tr>	
 					<tr>
 						<td class="titleTd">Content</td>
@@ -74,11 +76,11 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Password</td>
-						<td><input type="password" name="pwd"></td>
+						<td><input type="password" name="pwd" required></td>
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">
-							<input type="submit" value="Save">
+							<input type="submit" onclick="boardAddFnc();" value="Save">
 							<input type="reset" value="Reset">
 							<input type="button" value="Go to Main"
 								onclick="location.href='./list?page=1'">
@@ -88,6 +90,7 @@
 			</form>
 		</div>
 		
+		<jsp:include page="/footer.jsp"/>
 	</div>
 </body>
 </html>

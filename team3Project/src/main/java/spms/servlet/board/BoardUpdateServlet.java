@@ -1,6 +1,7 @@
 package spms.servlet.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
@@ -56,6 +57,8 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		Connection conn = null;
 		
+		int result = 0;
+		
 		BoardDto boardDto = new BoardDto();
 		
 		int no = Integer.parseInt(req.getParameter("no"));
@@ -75,9 +78,16 @@ public class BoardUpdateServlet extends HttpServlet {
 			BoardDao boardDao = new BoardDao();
 			boardDao.setConnection(conn);
 			
-			boardDao.boardUpdate(boardDto, pwd);
+			result = boardDao.boardUpdate(boardDto, pwd);
 			
-			resp.sendRedirect("./list?page=1");
+			if(result > 0) {
+				resp.sendRedirect("./list?page=1");
+			}else{
+				RequestDispatcher rd =
+						req.getRequestDispatcher("./PwdCheckView.jsp");
+				
+				rd.forward(req, resp);
+			}
 			
 		} catch (Exception e) {
 			// TODO: handle exception

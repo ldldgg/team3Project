@@ -148,13 +148,12 @@ public class BoardDao {
 	
 	public BoardDto boardSelectView(int no) throws Exception {
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmtView = null;
+		
 		ResultSet rs = null;
 		
 		String sql = "";
-		
-		sql = "SELECT WRITER, EMAIL, SUBJECT, CONTENT"
-				+ " FROM NOTICEBOARD"
-				+ " WHERE BNO=?";
+		String sqlView = "";
 		
 		String writer = "";
 		String email = "";
@@ -162,10 +161,21 @@ public class BoardDao {
 		String content = "";
 		
 		try {
+			sql = "SELECT WRITER, EMAIL, SUBJECT, CONTENT"
+					+ " FROM NOTICEBOARD"
+					+ " WHERE BNO=?";
+			
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
-			
 			rs = pstmt.executeQuery();
+			
+			sqlView = "UPDATE NOTICEBOARD"
+					+ " SET VIEW_COUNT=VIEW_COUNT + 1"
+					+ " WHERE BNO=?";
+			
+			pstmtView = connection.prepareStatement(sqlView);
+			pstmtView.setInt(1, no);
+			pstmtView.executeUpdate();
 			
 			BoardDto boardDto = new BoardDto();
 			
@@ -196,6 +206,13 @@ public class BoardDao {
 					e.printStackTrace();
 				}
 			}
+			if(pstmtView != null) {
+				try {
+					pstmtView.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			
 			if(rs != null) {
 				try {
@@ -209,14 +226,14 @@ public class BoardDao {
 		
 	}
 
-	public void boardUpdate(BoardDto boardDto, String pwd) throws Exception {
+	public int boardUpdate(BoardDto boardDto, String pwd) throws Exception {
 		
 		PreparedStatement pstmt = null;
 		
 		String sql = "";
 		
 		sql = "UPDATE NOTICEBOARD"
-				+ " SET SUBJECT=?,CONTENT=?"
+				+ " SET SUBJECT=?,CONTENT=?,MOD_DATE=SYSDATE"
 				+ " WHERE BNO=?"
 				+ "	AND EMAIL=(SELECT EMAIL"
 				+ " FROM MEMBERS"
@@ -233,7 +250,7 @@ public class BoardDao {
 			pstmt.setString(4, boardDto.getEmail());
 			pstmt.setString(5, pwd);
 			
-			pstmt.executeUpdate();
+			return pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -252,9 +269,7 @@ public class BoardDao {
 			
 			
 		}
-		
-		
-		
+
 	}
 	
 	
