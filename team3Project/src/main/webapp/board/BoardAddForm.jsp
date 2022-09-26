@@ -58,7 +58,7 @@
 				<table>
 					<tr>
 						<td class="titleTd" style="width: 100px;">Writer</td>
-						<td><input type="text" value="${member.mname}" readonly name="writer"></td>
+						<td><input type="text" value="${member.nickname}" readonly name="writer"></td>
 					</tr>
 					<tr>
 						<td class="titleTd">Subject</td>
@@ -66,7 +66,7 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Email</td>
-						<td><input type="text" value="${member.id}@test.com" readonly name="email"></td>
+						<td><input type="text" value="${member.email}" readonly name="email"></td>
 					</tr>	
 					<tr>
 						<td class="titleTd">Content</td>
@@ -74,7 +74,7 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Password</td>
-						<td><input type="password" value="${member.id}" name="pwd"></td>
+						<td><input type="password" name="pwd"></td>
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">

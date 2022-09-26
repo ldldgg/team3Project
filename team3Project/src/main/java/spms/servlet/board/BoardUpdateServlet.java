@@ -53,6 +53,38 @@ public class BoardUpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		Connection conn = null;
+		
+		BoardDto boardDto = new BoardDto();
+		
+		int no = Integer.parseInt(req.getParameter("no"));
+		String email = req.getParameter("email");
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("content");
+		String pwd = req.getParameter("pwd");
+		
+		boardDto.setBno(no);
+		boardDto.setEmail(email);
+		boardDto.setSubject(subject);
+		boardDto.setContent(content);
+		try {
+			ServletContext sc = this.getServletContext();
+			conn = (Connection) sc.getAttribute("conn");
+			
+			BoardDao boardDao = new BoardDao();
+			boardDao.setConnection(conn);
+			
+			boardDao.boardUpdate(boardDto, pwd);
+			
+			resp.sendRedirect("./list?page=1");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 }

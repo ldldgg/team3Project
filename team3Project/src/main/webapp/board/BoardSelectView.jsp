@@ -80,6 +80,7 @@
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">
+							<input type="hidden" value="${board.bno}" name="no">
 							<input type="submit" value="Save">
 							<input type="reset" value="Reset">
 							<input type="button" value="Go to Main"

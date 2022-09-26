@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.connector.Request;
+
 import spms.dao.BoardDao;
 import spms.dto.BoardDto;
 import spms.dto.MemberDto;
@@ -59,8 +61,14 @@ public class BoardAddServlet extends HttpServlet {
 			
 			if(result == 0) {
 				System.out.println("게시글 작성에 실패했습니다");
+				RequestDispatcher rd =
+						req.getRequestDispatcher("./BoardAddForm.jsp");
+				
+				rd.forward(req, resp);
+			}else if(result > 0) {
+				resp.sendRedirect("./list?page=1");
 			}
-			resp.sendRedirect("./list?page=1");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
