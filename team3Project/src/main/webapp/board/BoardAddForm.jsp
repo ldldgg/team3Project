@@ -83,7 +83,7 @@
 							<input type="submit" onclick="boardAddFnc();" value="Save">
 							<input type="reset" value="Reset">
 							<input type="button" value="Go to Main"
-								onclick="location.href='./list?page=1'">
+								onclick="history.back();">
 						</td>
 					</tr>
 				</table>
