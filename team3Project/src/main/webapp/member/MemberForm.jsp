@@ -12,7 +12,7 @@
 	 <body class='body_join'>
 	      <div id='wrap' class='join_warp'>     
 	         <div id='hearder' class='join_header'>
-	            <div><a id='logo_a' href='#'><img src='./img/danawalogo.png'></a></div>
+	            <div><a id='logo_a' href='#'><img src='../img/danawalogo.png'></a></div>
 	            <h1>회원가입</h1>
 	         </div>
 	         <table class='tabTable'>
@@ -29,7 +29,7 @@
 	         
 	         <div class='allCheckDiv'>
 		         <div class='termsTilte'>
-					 <input class='tiltecheckBoxInput' type='checkbox'>
+					 <input id="allSelect" class='tiltecheckBoxInput' type='checkbox'>
 					 <label class='tiltecheckLabel'>약관 모두 동의하기</label>
 				 </div>
 				 
@@ -92,7 +92,9 @@
 	         <input type="button" id="joinBtn" class='join_btn' onclick="mm();" value='회원가입'>
 	         </form>
 	         
-	         <jsp:include page="/footer.jsp"/>
+	         <div class='join_footer'>
+				Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
+			 </div>
 	         
 	      </div>
 	</body> 
