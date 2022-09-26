@@ -79,46 +79,55 @@ public class BoardDao {
 
 	public int addBoard(BoardDto boardDto, String email, String pwd) throws Exception{
 
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmtSel = null;
+		PreparedStatement pstmtUp = null;
 		ResultSet rs = null;
 		
-		String sql = "";
+		String sqlSel = "";
+		String sqlUp = "";
 		
 		try {
-//			sql = "SELECT NICKNAME"
-//					+ " FROM MEMBERS"
-//					+ " WHERE EMAIL=?"
-//					+ " AND PWD=?";
-//			
-//			pstmt = connection.prepareStatement(sql);
-//			
-//			pstmt.setString(1, email);
-//			pstmt.setString(2, pwd);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-				sql = "INSERT INTO NOTICEBOARD"
+			sqlSel = "SELECT NICKNAME"
+					+ " FROM MEMBERS"
+					+ " WHERE EMAIL=?"
+					+ " AND PWD=?";
+			
+			pstmtSel = connection.prepareStatement(sqlSel);
+			
+			pstmtSel.setString(1, email);
+			pstmtSel.setString(2, pwd);
+			
+			rs = pstmtSel.executeQuery();
+			
+			if(rs.next()) {
+				sqlUp = "INSERT INTO NOTICEBOARD"
 						+ "(BNO, EMAIL, SUBJECT, WRITER, CONTENT, CRE_DATE, MOD_DATE, VIEW_COUNT)"
 						+ "VALUES(NOTICEBOARD_BNO_SEQ.nextval,?,?,?,?,SYSDATE,SYSDATE,0)";
 				
-				pstmt = connection.prepareStatement(sql);
+				pstmtUp = connection.prepareStatement(sqlUp);
 				
-				pstmt.setString(1, email);
-				pstmt.setString(2, boardDto.getSubject());
-				pstmt.setString(3, boardDto.getWriter());
-				pstmt.setString(4, boardDto.getContent());
+				pstmtUp.setString(1, email);
+				pstmtUp.setString(2, boardDto.getSubject());
+				pstmtUp.setString(3, boardDto.getWriter());
+				pstmtUp.setString(4, boardDto.getContent());
 				
-				return pstmt.executeUpdate();
-//			}
+				return pstmtUp.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			throw e;
 		} finally {
-			if(pstmt != null) {
+			if(pstmtSel != null) {
 				try {
-					pstmt.close();
+					pstmtSel.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmtUp != null) {
+				try {
+					pstmtUp.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -133,19 +142,18 @@ public class BoardDao {
 			}
 		}
 		
-//		return 0;
+		return 0;
 		
 	}
 	
 	public BoardDto boardSelectView(int no) throws Exception {
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmtView = null;
+		
 		ResultSet rs = null;
 		
 		String sql = "";
-		
-		sql = "SELECT WRITER, EMAIL, SUBJECT, CONTENT"
-				+ " FROM NOTICEBOARD"
-				+ " WHERE BNO=?";
+		String sqlView = "";
 		
 		String writer = "";
 		String email = "";
@@ -153,10 +161,21 @@ public class BoardDao {
 		String content = "";
 		
 		try {
+			sql = "SELECT WRITER, EMAIL, SUBJECT, CONTENT"
+					+ " FROM NOTICEBOARD"
+					+ " WHERE BNO=?";
+			
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
-			
 			rs = pstmt.executeQuery();
+			
+			sqlView = "UPDATE NOTICEBOARD"
+					+ " SET VIEW_COUNT=VIEW_COUNT + 1"
+					+ " WHERE BNO=?";
+			
+			pstmtView = connection.prepareStatement(sqlView);
+			pstmtView.setInt(1, no);
+			pstmtView.executeUpdate();
 			
 			BoardDto boardDto = new BoardDto();
 			
@@ -166,6 +185,7 @@ public class BoardDao {
 				subject = rs.getString("SUBJECT");
 				content = rs.getString("CONTENT");
 				
+				boardDto.setBno(no);
 				boardDto.setWriter(writer);
 				boardDto.setEmail(email);
 				boardDto.setSubject(subject);
@@ -186,6 +206,13 @@ public class BoardDao {
 					e.printStackTrace();
 				}
 			}
+			if(pstmtView != null) {
+				try {
+					pstmtView.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			
 			if(rs != null) {
 				try {
@@ -197,6 +224,52 @@ public class BoardDao {
 		}
 		
 		
+	}
+
+	public int boardUpdate(BoardDto boardDto, String pwd) throws Exception {
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "";
+		
+		sql = "UPDATE NOTICEBOARD"
+				+ " SET SUBJECT=?,CONTENT=?,MOD_DATE=SYSDATE"
+				+ " WHERE BNO=?"
+				+ "	AND EMAIL=(SELECT EMAIL"
+				+ " FROM MEMBERS"
+				+ " WHERE EMAIL=?"
+				+ " AND PWD=?)";
+		
+		try {
+			
+			pstmt = connection.prepareStatement(sql);
+			
+			pstmt.setString(1, boardDto.getSubject());
+			pstmt.setString(2, boardDto.getContent());
+			pstmt.setInt(3, boardDto.getBno());
+			pstmt.setString(4, boardDto.getEmail());
+			pstmt.setString(5, pwd);
+			
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		} finally {
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}
+
 	}
 	
 	

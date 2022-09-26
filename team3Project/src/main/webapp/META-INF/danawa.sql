@@ -71,3 +71,6 @@ VALUES(MEMBERS_MNO_SEQ.nextval, '123', '123@test.com', '123', '관리자'
     , '관리자닉', SYSDATE, SYSDATE);
 
 COMMIT;
+
+SELECT *
+FROM NOTICEBOARD;

@@ -1,6 +1,7 @@
 package spms.servlet.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.BoardDao;
 import spms.dto.BoardDto;
-import spms.dto.MemberDto;
 
 
 @WebServlet(value="/board/add")
@@ -43,6 +43,7 @@ public class BoardAddServlet extends HttpServlet {
 		String pwd = req.getParameter("pwd");
 		
 		try {
+			
 			ServletContext sc = this.getServletContext();
 			conn = (Connection) sc.getAttribute("conn");
 			
@@ -57,10 +58,15 @@ public class BoardAddServlet extends HttpServlet {
 			boardDao.setConnection(conn);
 			int result = boardDao.addBoard(boardDto, email, pwd);
 			
-			if(result == 0) {
-				System.out.println("게시글 작성에 실패했습니다");
+			if(result > 0) {
+				resp.sendRedirect("./list?page=1");
+			}else{
+				RequestDispatcher rd =
+						req.getRequestDispatcher("./PwdCheckView.jsp");
+				
+				rd.forward(req, resp);
 			}
-			resp.sendRedirect("./list?page=1");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

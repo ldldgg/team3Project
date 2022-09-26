@@ -64,13 +64,17 @@
 		float: right;
 	}
 </style>
+
+
 </head>
 <body>
 
+
 	<div id="rootDiv">
+		<jsp:include page="/header.jsp"/>
+		
 		<div id="topDiv">
 			<h1>3팀 게시판	</h1>
-			<a href="../auth/logout">로그아웃</a>
 		</div>
 		<div id="tableDiv">
 			<table>
@@ -100,6 +104,7 @@
 					<input type="button" value="<이전" 
 						onclick="location.href='./list?page=${page-1}'">
 				</c:if>
+				
 				<c:forEach begin="1" end="${boardList.size()/10+0.9}" var="i">
 					<c:if test="${page eq i}">
 						<input type="button" value="${i}"
@@ -111,6 +116,7 @@
 							onclick="location.href='./list?page=${i}'">
 					</c:if>
 				</c:forEach>
+				
 				<c:if test="${page < boardList.size()/10}">
 					<input type="button" value="다음>"
 						onclick="location.href='./list?page=${page+1}'">
@@ -120,6 +126,8 @@
 			
 		
 		</div>
+		
+		<jsp:include page="/footer.jsp"/>
 	</div>
 </body>
 </html>

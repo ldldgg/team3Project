@@ -1,6 +1,7 @@
 package spms.servlet.board;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
@@ -53,6 +54,47 @@ public class BoardUpdateServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		Connection conn = null;
+		
+		int result = 0;
+		
+		BoardDto boardDto = new BoardDto();
+		
+		int no = Integer.parseInt(req.getParameter("no"));
+		String email = req.getParameter("email");
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("content");
+		String pwd = req.getParameter("pwd");
+		
+		boardDto.setBno(no);
+		boardDto.setEmail(email);
+		boardDto.setSubject(subject);
+		boardDto.setContent(content);
+		try {
+			ServletContext sc = this.getServletContext();
+			conn = (Connection) sc.getAttribute("conn");
+			
+			BoardDao boardDao = new BoardDao();
+			boardDao.setConnection(conn);
+			
+			result = boardDao.boardUpdate(boardDto, pwd);
+			
+			if(result > 0) {
+				resp.sendRedirect("./list?page=1");
+			}else{
+				RequestDispatcher rd =
+						req.getRequestDispatcher("./PwdCheckView.jsp");
+				
+				rd.forward(req, resp);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 }
