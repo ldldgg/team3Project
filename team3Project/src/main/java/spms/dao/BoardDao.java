@@ -271,6 +271,35 @@ public class BoardDao {
 		}
 
 	}
+
+	public int boardDelete(int no, String pwd, String email) throws Exception {
+
+		PreparedStatement pstmt = null;
+		
+		String sql = "";
+		
+		sql = "DELETE NOTICEBOARD"
+				+ " WHERE BNO=?"
+				+ "	AND EMAIL=(SELECT EMAIL"
+				+ " FROM MEMBERS"
+				+ " WHERE EMAIL=?"
+				+ " AND PWD=?)";
+		
+		try {
+			pstmt = connection.prepareStatement(sql);
+			
+			pstmt.setInt(1, no);
+			pstmt.setString(2, email);
+			pstmt.setString(3, pwd);
+			
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+			// TODO: handle exception
+		}
+		
+	}
 	
 	
 	

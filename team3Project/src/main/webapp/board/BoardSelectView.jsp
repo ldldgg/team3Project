@@ -88,7 +88,8 @@ function pageBackFnc() {
 						<td id="btnTd" colspan="2">
 							<input type="hidden" value="${board.bno}" name="no">
 							<input type="submit" value="Save">
-							<input type="reset" value="Reset">
+							<input type="submit" value="Delete" formaction="./delete">
+<%-- 								 onclick="location.href='./delete?no=${board.bno}'"> --%>
 							<input type="button" value="Go to Main"
 								onclick="pageBackFnc();">
 						</td>
