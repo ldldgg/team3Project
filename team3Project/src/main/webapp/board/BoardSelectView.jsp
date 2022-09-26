@@ -7,7 +7,6 @@
 <title>게시글 수정</title>
 
 <style type="text/css">
-	
 	#rootDiv{
 		width: 700px;
 	}
@@ -44,9 +43,15 @@
 	#btnTd{
 		text-align: center;
 	}
-	
 </style>
+<script type="text/javascript">
+function pageBackFnc() {
+	var backUrl = document.referrer;
+	
+	location.href = backUrl;
+}
 
+</script>
 </head>
 <body>
 	<div id="rootDiv">
@@ -85,7 +90,7 @@
 							<input type="submit" value="Save">
 							<input type="reset" value="Reset">
 							<input type="button" value="Go to Main"
-								onclick="location.href='./list?page=1'">
+								onclick="pageBackFnc();">
 						</td>
 					</tr>
 				</table>
