@@ -53,7 +53,7 @@
 					 <label class='checkLabel'>이벤트/쇼핑혜택 이메일 수신 <strong id='adsTermsStrong'>(선택)</strong></label><br>
 				 </div>
 			 </div>
-			 <form action='./add' method='post'>
+			 <form action='./add' method='post' name='join_confirm'>
 	         <div class='inputDiv_warp'>
 	           
 	            <div class='email_Input'>
@@ -89,7 +89,7 @@
 	            
 	         </div>
 	       
-	         <input type="button" id="joinBtn" class='join_btn' onclick="mm();" value='회원가입'>
+	         <input type="button" id="joinBtn" class='join_btn' value='회원가입'>
 	         </form>
 	         
 	         <div class='join_footer'>
