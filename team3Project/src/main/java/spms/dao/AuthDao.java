@@ -81,4 +81,107 @@ public class AuthDao {
 		// 회원 조회가 안된다면
 		return null;
 	}
+	
+	public String findId(String email) throws Exception{
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String id = "";
+		String sql = "";
+
+		sql += "select id";
+		sql += " from members";
+		sql += " where email=?";
+
+		try {
+			
+			pstmt = connecion.prepareStatement(sql);
+			
+			pstmt.setString(1, email);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				id = rs.getString("id");
+				
+			}
+			return id;
+		}catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		} finally {
+			try {
+
+				if (rs != null) {
+					rs.close();
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+	}
+	public String findPassword(String id)throws Exception{
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "";
+		String pwd = "";
+		
+			
+		
+		sql += "select pwd";
+		sql += " from members";
+		sql += " where id=?" ;
+
+		try {
+			
+			pstmt = connecion.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				pwd = rs.getString("pwd");
+				
+			}
+			return pwd;
+		}catch (Exception e) {
+			// TODO: handle exception
+			throw e;
+		} finally {
+			try {
+
+				if (rs != null) {
+					rs.close();
+				}
+
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+	}
 }
