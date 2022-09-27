@@ -8,7 +8,8 @@
 	<div style="float: right;">
 			<p style="margin: 8px; font-weight: bold; color: #fff;">닉네임: ${member.nickname}</p>
 			<p style="margin: 8px; text-align: right; color: #fff;">
-				<a href="../auth/logout">로그아웃</a>
+				<a href="../auth/logout" style="text-decoration: none;
+					color: #FFF;">로그아웃</a>
 			</p>
 	</div>
 </div>

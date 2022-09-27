@@ -43,10 +43,6 @@ public class BoardListServlet extends HttpServlet{
 			
 			boardList = (ArrayList<BoardDto>)boardDao.boardList();
 			
-			
-			
-			
-			
 			req.setAttribute("page", page);
 			req.setAttribute("boardList", boardList);
 			

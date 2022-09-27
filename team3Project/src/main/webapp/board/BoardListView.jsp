@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
 
-<link rel="stylesheet" href="./css/BoardListView.css"/>
+<link rel="stylesheet" href="./css/BoardListView.css?asdf"/>
 
 </head>
 <body>
@@ -17,7 +18,7 @@
 		<jsp:include page="/header.jsp"/>
 		
 		<div id="topDiv">
-			<h1>3팀 게시판	</h1>
+			<h1>3팀 게시판</h1>
 		</div>
 		<div id="tableDiv">
 			<table>
@@ -29,9 +30,11 @@
 				</tr>
 				<c:forEach var="board" items="${boardList}" begin="${(page-1)*10}" end="${page*10-1}">
 					<tr>
-						<td class="subject"><a href="./update?no=${board.bno}">${board.subject}</a></td>
+						<td class="subject"><a class="boardSelect" href="./update?no=${board.bno}">${board.subject}</a></td>
 						<td class="infoTd">${board.writer}</td>
-						<td class="infoTd">${board.cre_date}</td>
+						<td class="infoTd">
+							<fmt:formatDate value="${board.cre_date}" pattern="yyyy/MM/dd"/>
+						</td>
 						<td class="infoTd">${board.view_count}</td>
 					</tr>
 				</c:forEach>
@@ -39,12 +42,13 @@
 		</div>
 		<div id="pagemoveDiv">
 			<div id="cre_board">
-				<input type="button" value="글작성" onclick="location.href='./add'">
+				<input type="button" value="글작성" class="moveBtn"
+					 onclick="location.href='./add'">
 			</div>
 			<div id="btnDiv">
 			
 				<c:if test="${page > 1}">
-					<input type="button" value="<이전" 
+					<input type="button" value="< 이전" class="moveBtn"
 						onclick="location.href='./list?page=${page-1}'">
 				</c:if>
 				
@@ -66,18 +70,17 @@
 				<c:forEach begin="${pageFloor}" end="${pageEnd}" var="i">
 
 					<c:if test="${page eq i}">
-						<input type="button" value="${i}"
-							onclick="location.href='./list?page=${i}'"
-							style="color: red;">
+						<input type="button" value="${i}" id="selectPage" class="pageBtn"
+							onclick="location.href='./list?page=${i}'">
 					</c:if>
 					<c:if test="${page ne i}">
-						<input type="button" value="${i}"
+						<input type="button" value="${i}" class="pageBtn"
 							onclick="location.href='./list?page=${i}'">
 					</c:if>
 				</c:forEach>
 				
 				<c:if test="${page < boardList.size()/10}">
-					<input type="button" value="다음>"
+					<input type="button" value="다음 >" class="moveBtn"
 						onclick="location.href='./list?page=${page+1}'">
 				</c:if>
 					

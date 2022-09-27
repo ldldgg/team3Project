@@ -37,6 +37,7 @@ html, body{
 
 .infoTd {
 	text-align: center;
+	color: #848484;
 }
 
 .subject {
@@ -49,6 +50,28 @@ html, body{
 
 #btnDiv {
 	text-align: center;
+}
+
+.pageBtn{
+	background-color: #FFFFFF;
+	border: 1px solid #E6E6E6;
+	color: #585858;
+	font-weight: bold;
+}
+.moveBtn{
+	height: 25px;
+	background-color: #FFFFFF;
+	border: 1px solid #A4A4A4;
+	font-weight: bold;
+}
+#selectPage{
+	border: 1px solid #848484;
+	color: red;
+}
+
+.boardSelect{
+	text-decoration: none;
+	color: black;
 }
 
 table {
