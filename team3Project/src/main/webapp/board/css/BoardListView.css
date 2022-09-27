@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5f5f5;
+}
+
+#rootDiv {
+	box-sizing: border-box;
+	width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+}
+
+#titleTr {
+	background-color: #F1F1F3;
+}
+
+#titleTh {
+	width: 400px;
+}
+
+#writerTh {
+	width: 100px;
+}
+
+#dateTh {
+	width: 100px;
+}
+
+#viewCountTh {
+	width: 100px;
+}
+
+.infoTd {
+	text-align: center;
+}
+
+.subject {
+	padding-left: 20px;
+}
+
+#pagemoveDiv {
+	margin-top: 20px;
+}
+
+#btnDiv {
+	text-align: center;
+}
+
+table {
+	width: 100%;
+	border-top: 1px solid #8C8C8C;
+	border-bottom: 1px solid #8C8C8C;
+	border-collapse: collapse;
+}
+
+th {
+	font-size: 14px;
+	height: 30px;
+	border-bottom: 1px solid #8C8C8C;
+}
+
+td {
+	font-size: 14px;
+	height: 30px;
+	border-top: 1px solid #D5D5D5;
+}
+
+#cre_board {
+	float: right;
+}

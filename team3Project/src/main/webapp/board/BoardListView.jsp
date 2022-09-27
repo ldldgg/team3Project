@@ -6,65 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<style type="text/css">
-	
-	#rootDiv{
-		width: 700px;
-	}
-	#titleTr {
-		background-color: #F1F1F3;
-	}
 
-	
-	#titleTh{
-		width: 400px;
-	}
-	#writerTh{
-		width: 100px;
-	}
-	#dateTh{
-		width: 100px;
-	}
-	#viewCountTh{
-		width: 100px;
-	}
-	.infoTd {
-		text-align: center;
-	}
-	.subject{
-		padding-left: 20px;
-	}
-		
-	#pagemoveDiv{
-		margin-top: 20px;
-		width: 700px;
-	}
-	#btnDiv{
-		text-align: center;
-	}
-
-	table{
-		width: 100%;
-		border-top: 1px solid #8C8C8C;
-		border-bottom: 1px solid #8C8C8C;
- 		border-collapse: collapse; 
-	}
-	th {
-		font-size: 14px;
-		height: 30px;
-		border-bottom: 1px solid #8C8C8C;
-	}
-	td {
-		font-size: 14px;
-		height: 30px;
-		border-top: 1px solid #D5D5D5;
-	}
-	
-	#cre_board {
-		float: right;
-	}
-</style>
-
+<link rel="stylesheet" href="./css/BoardListView.css">
 
 </head>
 <body>
@@ -105,7 +48,10 @@
 						onclick="location.href='./list?page=${page-1}'">
 				</c:if>
 				
-				<c:forEach begin="1" end="${boardList.size()/10+0.9}" var="i">
+				
+				<c:set var="pageFloor" value="${page%10}"/>
+				
+				<c:forEach begin="${page-pageFloor+1}" end="${boardList.size()/10+0.9}" var="i">
 					<c:if test="${page eq i}">
 						<input type="button" value="${i}"
 							onclick="location.href='./list?page=${i}'"

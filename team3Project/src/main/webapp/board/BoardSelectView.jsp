@@ -6,52 +6,9 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 
-<style type="text/css">
-	#rootDiv{
-		width: 700px;
-	}
-	
-	#titleDiv{
- 		text-align: center;
-	}
-	
-	.titleTd{
-	 	height: 25px;
-		text-align: center;
-	}
+<link rel="stylesheet" href="./css/BoardSelectView.css">
+<script type="text/javascript" src="./js/BoardSelectView.js"></script>
 
-	table{
-		width: 100%;
-		border-collapse: collapse;
-	}
-	
-	td{
-		border: 1px solid;
-	}
-	#subject{
-		box-sizing: border-box;
-		width: 100%;
-	}
-	
-	#content {
-		box-sizing: border-box;
-		display: table;
-		width: 100%;
-		height: 300px;
-	}
-	
-	#btnTd{
-		text-align: center;
-	}
-</style>
-<script type="text/javascript">
-function pageBackFnc() {
-	var backUrl = document.referrer;
-	
-	location.href = backUrl;
-}
-
-</script>
 </head>
 <body>
 	<div id="rootDiv">
@@ -89,7 +46,6 @@ function pageBackFnc() {
 							<input type="hidden" value="${board.bno}" name="no">
 							<input type="submit" value="Save">
 							<input type="submit" value="Delete" formaction="./delete">
-<%-- 								 onclick="location.href='./delete?no=${board.bno}'"> --%>
 							<input type="button" value="Go to Main"
 								onclick="pageBackFnc();">
 						</td>
