@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 작성</title>
 
-<link rel="stylesheet" href="./css/BoardAddForm.css">
+<link rel="stylesheet" href="./css/BoardAddForm.css"/>
 
 </head>
 <body>
@@ -40,7 +40,7 @@
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">
-							<input type="submit" onclick="boardAddFnc();" value="Save">
+							<input type="submit" value="Save">
 							<input type="reset" value="Reset">
 							<input type="button" value="Go to Main"
 								onclick="history.back();">
@@ -49,7 +49,6 @@
 				</table>
 			</form>
 		</div>
-		
 		<jsp:include page="/footer.jsp"/>
 	</div>
 </body>

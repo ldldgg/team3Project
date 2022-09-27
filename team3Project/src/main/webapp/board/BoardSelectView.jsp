@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 
-<link rel="stylesheet" href="./css/BoardSelectView.css">
+<link rel="stylesheet" href="./css/BoardSelectView.css"/>
 <script type="text/javascript" src="./js/BoardSelectView.js"></script>
 
 </head>
@@ -33,9 +33,7 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Content</td>
-						<td>
-						<textarea id="content" name="content">${board.content}</textarea>
-						</td>
+						<td><textarea id="content" name="content">${board.content}</textarea></td>
 					</tr>	
 					<tr>
 						<td class="titleTd">Password</td>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 
-<link rel="stylesheet" href="./css/BoardListView.css">
+<link rel="stylesheet" href="./css/BoardListView.css"/>
 
 </head>
 <body>
@@ -48,11 +48,11 @@
 						onclick="location.href='./list?page=${page-1}'">
 				</c:if>
 				
-				<c:set var="pageOne" value="${(page-1)%10}"/>
+				<c:set var="pageOne" value="${(page-1) mod 10}"/>
 				<c:set var="pageFloor" value="${(page-1)-pageOne+1}"/>
 				
 				<c:set var="boardListOne" value="${boardList.size()/10}"/>
-				<c:set var="pageList" value="${boardListOne+(1-boardListOne%1)%1}"/>
+				<c:set var="pageList" value="${boardListOne+(1-boardListOne mod 1) mod 1}"/>
 				
 				<c:choose>
 					<c:when test="${pageList-pageFloor <= 10}">
