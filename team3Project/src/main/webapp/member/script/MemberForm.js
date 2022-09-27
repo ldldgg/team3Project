@@ -17,12 +17,20 @@
 	}//allFnc 끝
 	
 	function inputCheckFnc(){
-		var emailInput = document.getElementsByName('email');
-		var emailP = document.getElementById("emailP");
-		if(emailInput.value == null){
-			emailP.style.display = "block";
-			emailP.textContent = "이메일을 입력해 주세요";
+		var emailInput = document.getElementById('emailInput');
+		var emailP = document.getElementById('emailP');
+		var emailIdx = emailInput.value.indexOf('@');
+		
+		if(emailInput.value.length == 0){
+			emailP.style.display = 'block';
+			emailP.style.color = 'red';
+			emailP.textContent = "이메일은 필수입력입니다";
+		}else if(emailIdx == -1){
+			emailP.style.display = 'block';
+			emailP.style.color = 'red';
+			emailP.textContent = "이메일 양식을 확인하세요";
 		}
+		
 		
 	}
 	
@@ -38,8 +46,8 @@
 			var joinBtn = document.getElementById("joinBtn");
 			joinBtn.addEventListener('click', joinFnc);
 			
-			var emailInput = document.getElementsByName('email');
-			emailInput.addEventListener('focus', inputCheckFnc);
+			var emailInput = document.getElementById('emailInput');
+			emailInput.addEventListener('change', inputCheckFnc);
 		
 		
 		}//window.onload function 끝	

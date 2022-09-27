@@ -3,6 +3,7 @@ package spms.servlet.member;
 import java.io.IOException;
 import java.sql.Connection;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +20,10 @@ public class MemberAddServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		System.out.println("doget");
-		res.sendRedirect("../member/MemberForm.jsp");
-		
+		RequestDispatcher dispatcher = 
+				req.getRequestDispatcher("../member/MemberForm.jsp");
+		dispatcher.forward(req, res);
+				
 	}//doget끝
 	
 	@Override
