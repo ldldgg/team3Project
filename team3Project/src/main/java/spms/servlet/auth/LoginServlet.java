@@ -54,8 +54,8 @@ public class LoginServlet extends HttpServlet{
 						req.getRequestDispatcher("./LoginFail.jsp");
 				rd.forward(req, res);
 			}else {
-				//회원이 존재한다면 세션에 담고
-				//회원 전체 조회 페이지로 이동
+//				회원이 존재한다면 세션에 담고
+//				회원 전체 조회 페이지로 이동
 				HttpSession session = req.getSession();
 				session.setAttribute("member", memberDto);
 				

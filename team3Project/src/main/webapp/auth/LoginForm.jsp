@@ -5,113 +5,51 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<script type="text/javascript">
-	
-input:focus::placeholder{
-    color:transparent;
-}
+<script type="text/javaScript" src='./js/LoginForm.js'></script>
 
-// window.onload = function(){
-// 	var inputIdObj = document.getElementById('inputId');
-// 	var inputPwdObj = document.getElementById('inputPwd');
-	
-// 	inputIdObj.value = "아이디/인증 이메일";
-// 	inputPwdObj.value = "비밀번호";
-	
-// 	inputIdObj.addEventListener('focus', function(){
-	
-// 	if(this.value == "아이디/인증 이메일")	{
-		
-// 		inputIdObj.value = "";
-// 	}
-// 	});
-	
-// 	inputPwdObj.addEventListener('focus', function(){
-		
-// 		if(this.value == "비밀번호")	{
-			
-// 			inputPwdObj.value = "";
-// 		}
-// 		});
-	
-// 	inputIdObj.addEventListener('blur', function(){
-		
-// 	if(this.value == "")	{
-		
-// 		inputIdObj.value = "아이디/인증 이메일";
-// 	}
-// 	});
-	
-// 	inputPwdObj.addEventListener('blur', function(){
-		
-// 		if(this.value == "")	{
-			
-// 			inputPwdObj.value = "비밀번호";
-// 		}
-// 		});
-
-	
-// }
-
-
-</script>
-
-
-<style type="text/css">
-body {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-#loginDiv {
-	width: 400px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-</style>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
 </head>
-<body>
+<body class="body__login">
 	<!-- login_wrap -->
-	<div>
+	<div class="login_wrap">
 		<!-- header -->
-		<div>
-			<img src="./img/logo.jpg"> <a href="#" class="guest_orders">
-				<span>비로그인 주문조회</span>
+		<div class="header__login">
+			<img src="../img/danawalogo.png"> <a href="#"
+				class="guest_orders"> <span>비로그인 주문조회</span>
 			</a>
 		</div>
 		<!--// header -->
-		<div>
+		<div class="content__login">
 			<!-- login_form -->
-			<form action="./login" method="post">
-				<div>
-					<span> <input type="checkbox"> <label>로그인 유지</label>
-						<input type="radio" name="loginType">일반회원 <input
+			<form class="login_form" action="./login" method="post">
+				<div class="select_area">
+					<span class="chk_w"> <input type="checkbox"> <label>로그인
+							유지</label> <input type="radio" name="loginType">일반회원 <input
 						type="radio" name="loginType">협력사 관리자
 					</span>
 
 				</div>
-				<div>
-					<div>
-						<span> <input id="inputId" type="text" name="id" value="" placeholder="아이디/인증 이메일">
+				<div class="id_area">
+					<div class="input_wrap" id="loginInputId">
+						<span class="input_box"> <input class="int" id="inputId"
+							type="text" name="id" value="" placeholder="아이디/인증 이메일">
 						</span>
 					</div>
 				</div>
-				<div>
-					<div>
-						<span> <label style="display: block;"></label> <input
-							type="password" maxlength="20" id="inputPwd" name="password"
-							class="int" value="">
+				<div class="pw_area">
+					<div class="input_wrap" id="loginInputPwd">
+						<span class="input_box"> <label style="display: block;"></label>
+							<input type="password" maxlength="20" id="inputPwd"
+							name="password" class="int" value="" placeholder="비밀번호">
 						</span>
 					</div>
 				</div>
 
-				<div style="display: none;">
+				<div>
 					<p class="err_txt" id="error-message"></p>
 				</div>
-				<input class="btn_login" type="submit" value="로그인"></input>
+				<input type="submit" class="btn_login" onclick="error(event);"
+					value="로그인">
 				<div>
 					<div>
 						<div>
@@ -121,7 +59,7 @@ body {
 							<a href="./findPassword">비밀번호 찾기</a>
 						</div>
 						<div>
-							<a href="../member/MemberForm.jsp">회원가입</a>
+							<a href="../member/add">회원가입</a>
 						</div>
 					</div>
 				</div>
