@@ -24,22 +24,20 @@
 			<form class="login_form" action="./login" method="post">
 				<div class="select_area">
 					<span class="chk_w"> <input type="checkbox"> <label>로그인
-							유지</label>
-						
-							<input type="radio" name="loginType">일반회원 
-							<input type="radio" name="loginType">협력사 관리자
+							유지</label> <input type="radio" name="loginType">일반회원 <input
+						type="radio" name="loginType">협력사 관리자
 					</span>
 
 				</div>
 				<div class="id_area">
-					<div class="input_wrap" id="loginInputId">
+					<div class="input_wrap error" id="loginInputId">
 						<span class="input_box"> <input class="int" id="inputId"
 							type="text" name="id" value="" placeholder="아이디/인증 이메일">
 						</span>
 					</div>
 				</div>
 				<div class="pw_area">
-					<div class="input_wrap" id="loginInputPwd">
+					<div class="input_wrap error" id="loginInputPwd">
 						<span class="input_box"> <label style="display: block;"></label>
 							<input type="password" maxlength="20" id="inputPwd"
 							name="password" class="int" value="" placeholder="비밀번호">
@@ -48,7 +46,7 @@
 				</div>
 
 				<div>
-					<p class="err_txt" id="error-message"></p>
+					<p class="err_txt" id="error-message">아이디/인증이메일 또는 비밀번호를 잘못 입력하셨습니다.</p>
 				</div>
 				<input type="submit" class="btn_login" onclick="error(event);"
 					value="로그인">

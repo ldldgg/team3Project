@@ -5,6 +5,7 @@
 	
 		if (id == ""){
 			event.preventDefault();
+			document.getElementById("loginInputPwd").className = 'input_wrap';
 			document.getElementById("loginInputId").className += ' error';
 			errorM.textContent = "아이디를 입력해 주세요";
 		}else if (pw == "") {
@@ -15,3 +16,4 @@
 		} 
 			
 	}
+	
