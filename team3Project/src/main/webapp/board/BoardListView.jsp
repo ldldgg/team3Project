@@ -48,10 +48,23 @@
 						onclick="location.href='./list?page=${page-1}'">
 				</c:if>
 				
+				<c:set var="pageOne" value="${(page-1)%10}"/>
+				<c:set var="pageFloor" value="${(page-1)-pageOne+1}"/>
 				
-				<c:set var="pageFloor" value="${page%10}"/>
+				<c:set var="boardListOne" value="${boardList.size()/10}"/>
+				<c:set var="pageList" value="${boardListOne+(1-boardListOne%1)%1}"/>
 				
-				<c:forEach begin="${page-pageFloor+1}" end="${boardList.size()/10+0.9}" var="i">
+				<c:choose>
+					<c:when test="${pageList-pageFloor <= 10}">
+						<c:set var="pageEnd" value="${pageList}"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="pageEnd" value="${pageFloor + 9}"/>
+					</c:otherwise>
+				</c:choose>
+				
+				<c:forEach begin="${pageFloor}" end="${pageEnd}" var="i">
+
 					<c:if test="${page eq i}">
 						<input type="button" value="${i}"
 							onclick="location.href='./list?page=${i}'"
@@ -69,8 +82,7 @@
 				</c:if>
 					
 			</div>
-			
-		
+			<div style="clear:both;"></div>
 		</div>
 		
 		<jsp:include page="/footer.jsp"/>
