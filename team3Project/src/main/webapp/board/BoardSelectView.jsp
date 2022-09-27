@@ -82,7 +82,7 @@ function pageBackFnc() {
 					</tr>	
 					<tr>
 						<td class="titleTd">Password</td>
-						<td><input type="password" name="pwd" required></td>
+						<td><input type="text" name="pwd" required></td>
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">
