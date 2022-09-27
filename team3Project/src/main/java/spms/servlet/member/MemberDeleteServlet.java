@@ -15,53 +15,6 @@ import javax.websocket.Session;
 import spms.dao.BoardDao;
 import spms.dto.BoardDto;
 
-@WebServlet(value="/board/delete")
+@WebServlet(value="/member/delete")
 public class MemberDeleteServlet extends HttpServlet{
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-		Connection conn = null;
-		int result = 0;
-		
-		int no = Integer.parseInt(req.getParameter("no"));
-		String pwd = req.getParameter("pwd");
-		String email = req.getParameter("email");
-		
-		try {
-			ServletContext sc = this.getServletContext();
-			conn = (Connection) sc.getAttribute("conn");
-			
-			BoardDao boardDao = new BoardDao();
-			boardDao.setConnection(conn);
-			
-			result = boardDao.boardDelete(no, pwd, email);
-			
-			if(result != 0) {
-				resp.sendRedirect("./list?page=1");
-			}else {
-				RequestDispatcher rd =
-						req.getRequestDispatcher("./deleteFailView.jsp");
-						
-				rd.forward(req, resp);
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		
-		
-	}
-	
-	
 }
