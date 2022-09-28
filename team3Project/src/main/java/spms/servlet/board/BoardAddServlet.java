@@ -61,8 +61,11 @@ public class BoardAddServlet extends HttpServlet {
 			if(result > 0) {
 				resp.sendRedirect("./list?page=1");
 			}else{
+				req.setAttribute("board", boardDto);
+				req.setAttribute("pwd", pwd);
+				
 				RequestDispatcher rd =
-						req.getRequestDispatcher("./PwdCheckView.jsp");
+						req.getRequestDispatcher("./BoardAddForm.jsp");
 				
 				rd.forward(req, resp);
 			}

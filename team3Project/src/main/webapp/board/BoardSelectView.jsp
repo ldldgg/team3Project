@@ -7,10 +7,12 @@
 <title>게시글 수정</title>
 
 <link rel="stylesheet" href="./css/BoardSelectView.css"/>
-<script type="text/javascript" src="./js/BoardSelectView.js"></script>
+<script type="text/javascript" src="./js/BoardSelectView.js?abc"></script>
 
 </head>
 <body>
+<input id="nePwd" type="hidden" value="${pwd}">
+
 	<div id="rootDiv">
 		<jsp:include page="/header.jsp"/>
 		
@@ -21,11 +23,15 @@
 				<table>
 					<tr>
 						<td class="titleTd" style="width: 100px;">Writer</td>
-						<td><input type="text" value="${board.writer}" readonly name="writer"></td>
+						<td>
+							<input type="text" value="${board.writer}" readonly name="writer">
+							<span id="subjectEmptyMsg" style="font-size: 10px; color: red;
+							 display: none;">제목을 입력해주세요</span>
+						</td>
 					</tr>
 					<tr>
 						<td class="titleTd">Subject</td>
-						<td><input type="text" value="${board.subject}" id="subject" name="subject" required></td>
+						<td><input type="text" value="${board.subject}" id="subject" name="subject"></td>
 					</tr>	
 					<tr>
 						<td class="titleTd">Email</td>
@@ -37,18 +43,24 @@
 					</tr>	
 					<tr>
 						<td class="titleTd">Password</td>
-						<td><input type="text" name="pwd" required></td>
+						<td>
+							<input id="pwd" type="text" name="pwd" value="${pwd}">
+							<span id="pwdEmptyMsg" style="font-size: 10px; color: red;
+							 display: none;">비밀번호를 입력하세요</span>
+							<span id="pwdNeMsg" style="font-size: 10px; color: red;
+							 display: none;">비밀번호가 다릅니다</span>
+						</td>
 					</tr>	
 					<tr>
 						<td id="btnTd" colspan="2">
-							<input type="hidden" value="${board.bno}" name="no">
-							<input type="submit" value="Save">
-							<input type="submit" value="Delete" formaction="./delete">
+							<input id="submit" type="submit" value="Save">
+							<input id="delete" type="submit" value="Delete" formaction="./delete">
 							<input type="button" value="Go to Main"
-								onclick="pageBackFnc();">
+								onclick="location.href='./list?page=1'">
 						</td>
 					</tr>
 				</table>
+				<input type="hidden" value="${board.bno}" name="no">
 			</form>
 		</div>
 		<jsp:include page="/footer.jsp"/>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.BoardDao;
+import spms.dto.BoardDto;
 
 @WebServlet(value="/board/delete")
 public class BoardDeleteServlet extends HttpServlet {
@@ -26,6 +27,9 @@ public class BoardDeleteServlet extends HttpServlet {
 		int no = Integer.parseInt(req.getParameter("no"));
 		String pwd = req.getParameter("pwd");
 		String email = req.getParameter("email");
+		String writer = req.getParameter("writer");
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("content");
 
 		try {
 			ServletContext sc = this.getServletContext();
@@ -36,10 +40,22 @@ public class BoardDeleteServlet extends HttpServlet {
 
 			result = boardDao.boardDelete(no, pwd, email);
 
-			if (result != 0) {
+			if (result > 0) {
 				resp.sendRedirect("./list?page=1");
 			} else {
-				RequestDispatcher rd = req.getRequestDispatcher("./DeleteFailView.jsp");
+				BoardDto boardDto = new BoardDto();
+				
+				boardDto.setBno(no);
+				boardDto.setWriter(writer);
+				boardDto.setEmail(email);
+				boardDto.setSubject(subject);
+				boardDto.setContent(content);
+				
+				req.setAttribute("pwd", pwd);
+				req.setAttribute("board", boardDto);
+				
+				RequestDispatcher rd =
+						req.getRequestDispatcher("./BoardSelectView.jsp");
 
 				rd.forward(req, resp);
 			}

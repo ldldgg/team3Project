@@ -63,11 +63,13 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		int no = Integer.parseInt(req.getParameter("no"));
 		String email = req.getParameter("email");
+		String writer = req.getParameter("writer");
 		String subject = req.getParameter("subject");
 		String content = req.getParameter("content");
 		String pwd = req.getParameter("pwd");
 		
 		boardDto.setBno(no);
+		boardDto.setWriter(writer);
 		boardDto.setEmail(email);
 		boardDto.setSubject(subject);
 		boardDto.setContent(content);
@@ -83,8 +85,11 @@ public class BoardUpdateServlet extends HttpServlet {
 			if(result > 0) {
 				resp.sendRedirect("./list?page=1");
 			}else{
+				req.setAttribute("pwd", pwd);
+				req.setAttribute("board", boardDto);
+				
 				RequestDispatcher rd =
-						req.getRequestDispatcher("./PwdCheckView.jsp");
+						req.getRequestDispatcher("./BoardSelectView.jsp");
 				
 				rd.forward(req, resp);
 			}
