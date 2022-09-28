@@ -26,7 +26,7 @@ public class BoardDao {
 		String sql = "";
 		
 		sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
-			+ " FROM NOTICEBOARD"
+			+ " FROM BOARD"
 			+ " ORDER BY BNO DESC";
 		
 		try {
@@ -102,9 +102,9 @@ public class BoardDao {
 			rs = pstmtSel.executeQuery();
 			
 			if(rs.next()) {
-				sqlUp = "INSERT INTO NOTICEBOARD"
-						+ "(BNO, EMAIL, SUBJECT, WRITER, CONTENT, CRE_DATE, MOD_DATE, VIEW_COUNT)"
-						+ "VALUES(NOTICEBOARD_BNO_SEQ.nextval,?,?,?,?,SYSDATE,SYSDATE,0)";
+				sqlUp = "INSERT INTO BOARD"
+						+ "(BNO, EMAIL, SUBJECT, WRITER, CONTENT, CRE_DATE, MOD_DATE)"
+						+ "VALUES(BOARD_BNO_SEQ.nextval,?,?,?,?,SYSDATE,SYSDATE)";
 				
 				pstmtUp = connection.prepareStatement(sqlUp);
 				
@@ -164,14 +164,14 @@ public class BoardDao {
 		
 		try {
 			sql = "SELECT WRITER, EMAIL, SUBJECT, CONTENT"
-					+ " FROM NOTICEBOARD"
+					+ " FROM BOARD"
 					+ " WHERE BNO=?";
 			
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
 			
-			sqlView = "UPDATE NOTICEBOARD"
+			sqlView = "UPDATE BOARD"
 					+ " SET VIEW_COUNT=VIEW_COUNT + 1"
 					+ " WHERE BNO=?";
 			
@@ -234,7 +234,7 @@ public class BoardDao {
 		
 		String sql = "";
 		
-		sql = "UPDATE NOTICEBOARD"
+		sql = "UPDATE BOARD"
 				+ " SET SUBJECT=?,CONTENT=?,MOD_DATE=SYSDATE"
 				+ " WHERE BNO=?"
 				+ "	AND EMAIL=(SELECT EMAIL"
@@ -280,7 +280,7 @@ public class BoardDao {
 		
 		String sql = "";
 		
-		sql = "DELETE NOTICEBOARD"
+		sql = "DELETE BOARD"
 				+ " WHERE BNO=?"
 				+ "	AND EMAIL=(SELECT EMAIL"
 				+ " FROM MEMBERS"

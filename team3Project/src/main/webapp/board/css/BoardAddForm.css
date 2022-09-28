@@ -34,6 +34,7 @@ td {
 	border: 1px solid;
 }
 
+
 #subject {
 	box-sizing: border-box;
 	width: 100%;
@@ -41,9 +42,11 @@ td {
 
 #content {
 	box-sizing: border-box;
-	display: table;
+	display: block;
+	resize: none;
 	width: 100%;
 	height: 300px;
+	overflow: auto;
 }
 
 #btnTd {
