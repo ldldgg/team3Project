@@ -20,6 +20,12 @@ public class MemberAddServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		
+		req.setAttribute("id", "");
+		req.setAttribute("notice", "");
+		req.setAttribute("idCk", false);
+		req.setAttribute("email", "");
+		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("../member/MemberForm.jsp");
 		dispatcher.forward(req, res);
@@ -29,7 +35,7 @@ public class MemberAddServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		System.out.println("doPost");
+		
 		Connection conn = null;
 		
 		MemberDto memberDto = new MemberDto();

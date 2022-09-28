@@ -3,6 +3,7 @@ package spms.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,5 +121,56 @@ public class MemberDao {
 	
 	
 	
+	 public Boolean memberIdCheck(String id) throws Exception{
+	  
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 
+		 String sql = "";
+		 
+		 sql += "SELECT ID";
+		 sql += " FROM MEMBERS";
+		 sql += " WHERE ID = ?";
+		 
+		 try {
+			 pstmt = connection.prepareStatement(sql);
+			 
+			 pstmt.setString(1, id);
+			 
+			 rs = pstmt.executeQuery();
+			 
+			 if(rs.next()) {
+				 
+				 return true;
+			 }else {
+				 return false;
+			 }
+		 }catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			throw e;
+		}finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		
+	 }
+	 
 	
 }//memberDao 끝
