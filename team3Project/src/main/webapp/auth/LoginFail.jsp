@@ -24,10 +24,13 @@
 			<form class="login_form" action="./login" method="post">
 				<div class="select_area">
 					<span class="chk_w"> <input type="checkbox"> <label>로그인
-							유지</label> <input type="radio" name="loginType">일반회원 <input
-						type="radio" name="loginType">협력사 관리자
+							유지</label> 
+							
 					</span>
-
+							<div style="float: right;">
+							<input type="radio" name="loginType">일반회원 <input
+						type="radio" name="loginType">협력사 관리자
+				</div>
 				</div>
 				<div class="id_area">
 					<div class="input_wrap error" id="loginInputId">

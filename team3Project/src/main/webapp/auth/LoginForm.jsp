@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<script type="text/javaScript" src='./js/LoginForm.js'></script>
+<script type="text/javaScript" src='./js/LoginForm.js?asdf'></script>
 
 <link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
 </head>
@@ -25,11 +25,11 @@
 				<div class="select_area">
 					<span class="chk_w"> <input type="checkbox"> <label>로그인
 							유지</label>
-						
+					</span>
+						<div style="float: right;">
 							<input type="radio" name="loginType">일반회원 
 							<input type="radio" name="loginType">협력사 관리자
-					</span>
-
+		</div>
 				</div>
 				<div class="id_area">
 					<div class="input_wrap" id="loginInputId">
@@ -67,6 +67,9 @@
 				</div>
 			</form>
 			<!--// login_form -->
+			<div id="footer" class="footer footer__login footer__login--search">
+            <address>Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.</address>
+        </div>
 		</div>
 	</div>
 	<!--// login_wrap -->

@@ -49,11 +49,11 @@ public class FindIdServlet extends HttpServlet{
 						req.getRequestDispatcher("./FindIdSucceed.jsp");
 				rd.forward(req, resp);
 			}else {
+				
+				
 				RequestDispatcher rd = 
 						req.getRequestDispatcher("./FindIdFail.jsp");
 				rd.forward(req, resp);
-				
-				
 			}
 			
 		} catch (Exception e) {

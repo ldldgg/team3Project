@@ -8,20 +8,31 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		
-		<style type="text/css">
-		
-		</style>
+	<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
 		
 		<script type="text/javascript">
 		
 		</script>
 	</head>
 	
-	<body>
+	<body class="boby__login">
+		<div class="login_wrap">
 		<form action="./logout" method="post">
+		<div class="header__login">
+				<img src="../img/danawalogo.png">
+			</div>
+		<div style="font-size: 30px">
 		이름:	${member.mname} <br>
 		이메일:	${member.email} <br>
-		<input type="submit" value="로그아웃">
+		</div>
+		<button class="search__button" type="submit" value="로그아웃">
+		<strong>로그아웃</strong>
+		</button>
 		</form>
+		
+		<div id="footer" class="footer footer__login footer__login--search">
+            <address>Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.</address>
+        </div>
+        </div>
 	</body>
 </html>
