@@ -51,5 +51,4 @@ public class MemberListServlet extends HttpServlet {
 	}
 	
 	
-	
-}
+}//서블릿끝
