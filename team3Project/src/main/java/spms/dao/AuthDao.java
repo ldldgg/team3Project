@@ -3,6 +3,7 @@ package spms.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Pattern;
 
 import spms.dto.MemberDto;
 
@@ -21,13 +22,75 @@ public class AuthDao {
 
 		String sql = "";
 		int colIndex = 1;
-
-		sql += "SELECT * FROM MEMBERS";
-		sql += " WHERE ID = ? AND PWD = ?";
-
+		
 		String name = "";
 		String email = "";
 		String nickname = "";
+		
+		System.out.println("아이디는 :" +id);
+		String pattern2 = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
+		
+		
+		if (Pattern.matches(pattern2, id)) {
+
+			sql += "SELECT * FROM MEMBERS";
+			sql += " WHERE EMAIL = ? AND PWD = ?";
+			 System.out.println("이메일 이프문");
+			try {
+
+				pstmt = connecion.prepareStatement(sql);
+
+				pstmt.setString(colIndex++, id);
+				pstmt.setString(colIndex, pwd);
+
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					id = rs.getString("id");
+					name = rs.getString("mname");
+					email = rs.getString("email");
+					nickname = rs.getString("nickname");
+					
+					MemberDto memberDto = new MemberDto();
+
+					memberDto.setId(id);
+					memberDto.setMname(name);
+					memberDto.setEmail(email);
+					memberDto.setNickname(nickname);
+					// 회원 정보 조회 데이터
+					return memberDto;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				throw e;
+			} finally {
+				try {
+
+					if (rs != null) {
+						rs.close();
+					}
+
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+
+				try {
+					if (pstmt != null) {
+						pstmt.close();
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			} //finally 끝
+			return null;
+		} else {
+			
+		
+		sql += "SELECT * FROM MEMBERS";
+		sql += " WHERE ID = ? AND PWD = ?";
+		System.out.println("id이프문");
 		try {
 
 			pstmt = connecion.prepareStatement(sql);
@@ -76,10 +139,11 @@ public class AuthDao {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}
+		} //finally 끝
 
 		// 회원 조회가 안된다면
 		return null;
+		}
 	}
 	
 	public String findId(String email) throws Exception{

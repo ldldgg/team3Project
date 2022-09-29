@@ -31,42 +31,43 @@ public class LoginServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("password");
 		
-		try {
-			
-			String id = req.getParameter("id");
-			String pwd = req.getParameter("password");
-			
-			ServletContext sc = this.getServletContext();
-			
-			conn = (Connection) sc.getAttribute("conn");
-			
-			AuthDao authDao = new AuthDao();
-			authDao.setConnection(conn);
-			
-			
-			MemberDto memberDto =
-					authDao.authExist(id, pwd);
-
-			//회원이 없다면 로그인 실패 페이지로 이동
-			if(memberDto == null) {
-				RequestDispatcher rd = 
-						req.getRequestDispatcher("./LoginFail.jsp");
-				rd.forward(req, res);
-			}else {
-//				회원이 존재한다면 세션에 담고
-//				회원 전체 조회 페이지로 이동
-				HttpSession session = req.getSession();
-				session.setAttribute("member", memberDto);
+		System.out.println(id);
+		System.out.println(pwd);
+		
+			try {
 				
-				res.sendRedirect("../board/list?page=1");
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new ServletException(e);
-		} 
+				ServletContext sc = this.getServletContext();
+				
+				conn = (Connection) sc.getAttribute("conn");
+				
+				AuthDao authDao = new AuthDao();
+				authDao.setConnection(conn);
+				
+				
+				MemberDto memberDto =
+						authDao.authExist(id, pwd);
+				
+				if(memberDto == null) {
+					RequestDispatcher rd = 
+							req.getRequestDispatcher("./LoginFail.jsp");
+					rd.forward(req, res);
+				}else {
+				
+					HttpSession session = req.getSession();
+					session.setAttribute("member", memberDto);
+					
+					res.sendRedirect("../board/list?page=1");
+				}
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new ServletException(e);
+			} 
+		
 		
 		
 	}

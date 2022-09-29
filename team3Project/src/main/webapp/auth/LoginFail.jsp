@@ -14,7 +14,9 @@
 	<div class="login_wrap">
 		<!-- header -->
 		<div class="header__login">
-			<img src="../img/danawalogo.png"> <a href="#"
+			<a href="./login">
+				<img src="../img/danawalogo.png" >
+				</a> <a href="#"
 				class="guest_orders"> <span>비로그인 주문조회</span>
 			</a>
 		</div>

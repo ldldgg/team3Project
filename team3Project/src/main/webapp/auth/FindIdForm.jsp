@@ -17,7 +17,9 @@
 	<div class="login_wrap">
 		<form action="./findId" method="post">
 			<div class="header__login">
-				<img src="../img/danawalogo.png">
+				<a href="./login">
+				<img src="../img/danawalogo.png" >
+				</a>
 			</div>
 
 			<div class="container content__login content__login--search">
@@ -58,6 +60,8 @@
 
 
 					</div>
+					
+					
 				</div>
 			</div>
 		</form>

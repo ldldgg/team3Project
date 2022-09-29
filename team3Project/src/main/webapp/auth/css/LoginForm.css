@@ -27,6 +27,15 @@ input:focus::placeholder {
 	position: relative;
 }
 
+.awd {
+/*     display: block; */
+    position: relative;
+    font-size: 13px;
+    letter-spacing: -0.03em;
+    color: #919191;
+    cursor: pointer;
+}
+
 .guest_orders {
 	position: absolute;
 	top: 0;
@@ -70,7 +79,7 @@ input:focus::placeholder {
 }
 
 .login_form {
-	/* width: 430px; */
+	width: 430px;
 	margin: 0 auto;
 	padding: 60px 0;
 	box-sizing: border-box;
@@ -95,9 +104,9 @@ input:focus::placeholder {
 }
 
 .input_wrap {
-	/* position: relative; */
-	/* height: 29px; */
-	/* margin: 0 0 10px 0; */
+	position: relative;
+	height: 29px;
+	margin: 0 0 10px 0;
 	padding: 10px 50px 10px 21px;
 	border: solid 1px #bfbfbf;
 	border-radius: 4px;
@@ -336,6 +345,8 @@ html, body {
 a {
     text-decoration: none;
 }
+
+
 /* menu, li, ul { */
 /*     list-style: none; */
 /* } */

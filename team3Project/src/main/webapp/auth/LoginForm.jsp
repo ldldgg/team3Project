@@ -7,7 +7,7 @@
 <title>로그인</title>
 <script type="text/javaScript" src='./js/LoginForm.js?asdf'></script>
 
-<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css?asd'>
 </head>
 <body class="body__login">
 	<!-- login_wrap -->
@@ -23,13 +23,13 @@
 			<!-- login_form -->
 			<form class="login_form" action="./login" method="post">
 				<div class="select_area">
-					<span class="chk_w"> <input type="checkbox"> <label>로그인
+					<span class="chk_w"> <input type="checkbox"> <label class="awd">로그인
 							유지</label>
 					</span>
-						<div style="float: right;">
-							<input type="radio" name="loginType">일반회원 
-							<input type="radio" name="loginType">협력사 관리자
-		</div>
+					<div style="float: right;">
+						<input type="radio" name="loginType"><label class="awd">일반회원</label> 
+						<input type="radio" name="loginType"><label class="awd">협력사 관리자</label>
+					</div>
 				</div>
 				<div class="id_area">
 					<div class="input_wrap" id="loginInputId">
@@ -68,8 +68,10 @@
 			</form>
 			<!--// login_form -->
 			<div id="footer" class="footer footer__login footer__login--search">
-            <address>Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.</address>
-        </div>
+				<address>
+					Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
+				</address>
+			</div>
 		</div>
 	</div>
 	<!--// login_wrap -->
