@@ -26,6 +26,9 @@ public class BoardUpdateServlet extends HttpServlet {
 		Connection conn = null;
 		
 		int no = Integer.parseInt(req.getParameter("no"));
+		int page = Integer.parseInt(req.getParameter("page"));
+		String filter = req.getParameter("filter");
+		String selectFil = req.getParameter("selectFil");
 		
 		try {
 			
@@ -38,6 +41,9 @@ public class BoardUpdateServlet extends HttpServlet {
 			BoardDto boardDto = boardDao.boardSelectView(no);
 			
 			req.setAttribute("board", boardDto);
+			req.setAttribute("page", page);
+			req.setAttribute("filter", filter);
+			req.setAttribute("selectFil", selectFil);
 			
 			RequestDispatcher rd =
 					req.getRequestDispatcher("./BoardSelectView.jsp");

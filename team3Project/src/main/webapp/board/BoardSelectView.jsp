@@ -57,7 +57,7 @@
 							<input id="submit" type="submit" value="Save">
 							<input id="delete" type="submit" value="Delete" formaction="./delete">
 							<input type="button" value="Go to Main"
-								onclick="location.href='./list?page=1'">
+								onclick="location.href='./list?filter=${filter}&selectFil=${selectFil}&page=${page}'">
 						</td>
 					</tr>
 				</table>

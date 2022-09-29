@@ -43,11 +43,13 @@
 					<th id="dateTh">날짜</th>
 					<th id="viewCountTh">조회수</th>
 				</tr>
-				<c:forEach var="board" items="${boardList}" begin="${(page-1)*10}"
-					end="${page*10-1}">
+				<c:forEach var="board" items="${boardList}" begin="0"
+					end="9">
 					<tr>
-						<td class="subject"><a class="boardSelect"
-							href="./update?no=${board.bno}">${board.subject}</a></td>
+						<td class="subject">
+							<a class="boardSelect" href="./update?no=${board.bno}
+							&filter=${filter}&selectFil=${selectFil}&page=${page}">${board.subject}</a>
+						</td>
 						<td class="infoTd">${board.writer}</td>
 						<td class="infoTd"><fmt:formatDate value="${board.cre_date}"
 								pattern="yyyy/MM/dd" /></td>
@@ -71,7 +73,7 @@
 				<c:set var="pageOne" value="${(page-1) mod 10}" />
 				<c:set var="pageFloor" value="${(page-1)-pageOne+1}" />
 
-				<c:set var="boardListOne" value="${boardList.size()/10}" />
+				<c:set var="boardListOne" value="${boardAllNum/10}" />
 				<c:set var="pageList"
 					value="${boardListOne+(1-boardListOne mod 1) mod 1}" />
 
@@ -96,7 +98,7 @@
 					</c:if>
 				</c:forEach>
 
-				<c:if test="${page < boardList.size()/10}">
+				<c:if test="${page < boardAllNum/10}">
 					<input type="button" value="다음 >" class="moveBtn"
 						onclick="location.href='./list?filter=${filter}&selectFil=${selectFil}&page=${page+1}'">
 				</c:if>
