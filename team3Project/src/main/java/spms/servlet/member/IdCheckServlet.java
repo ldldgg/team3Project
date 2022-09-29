@@ -2,22 +2,16 @@ package spms.servlet.member;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletSecurityElement;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import javafx.scene.web.WebHistory;
 import spms.dao.MemberDao;
-import spms.dto.MemberDto;
 
 @WebServlet(value="/member/idcheck")
 public class IdCheckServlet extends HttpServlet{

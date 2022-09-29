@@ -18,20 +18,32 @@ public class BoardDao {
 		this.connection = conn;
 	}
 
-	public ArrayList<BoardDto> boardList() throws Exception{
+	public ArrayList<BoardDto> boardList(String filter) throws Exception{
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		String sql = "";
-		
-		sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
-			+ " FROM BOARD"
-			+ " ORDER BY BNO DESC";
+		if(filter == null) {
+			sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
+					+ " FROM BOARD"
+					+ " ORDER BY BNO DESC";
+		}else {
+			filter = "%" + filter + "%";
+			
+			sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
+					+ " FROM BOARD"
+					+ " WHERE SUBJECT LIKE ?"
+					+ " ORDER BY BNO DESC";
+		}
 		
 		try {
 			
 			pstmt = connection.prepareStatement(sql);
+			
+			if(filter != null) {
+				pstmt.setString(1, filter);
+			}
 			
 			rs = pstmt.executeQuery();
 			

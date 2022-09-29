@@ -47,6 +47,7 @@
 						<td class="titleTd">Password</td>
 						<td>
 							<input id="pwd" type="text" name="pwd" value="${pwd}">
+							
 							<span id="pwdEmptyMsg" style="font-size: 10px; color: red;
 							 display: none;">비밀번호를 입력하세요</span>
 							<span id="pwdNeMsg" style="font-size: 10px; color: red;

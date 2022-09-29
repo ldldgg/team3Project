@@ -28,8 +28,10 @@ public class BoardListServlet extends HttpServlet{
 		Connection conn = null;
 		
 		int page = 0;
+		String filter = "";
 		
 		page = Integer.parseInt(req.getParameter("page"));
+		filter = req.getParameter("filter");
 		
 		try {
 			
@@ -41,9 +43,10 @@ public class BoardListServlet extends HttpServlet{
 			
 			ArrayList<BoardDto> boardList = null;
 			
-			boardList = (ArrayList<BoardDto>)boardDao.boardList();
+			boardList = (ArrayList<BoardDto>)boardDao.boardList(filter);
 			
 			req.setAttribute("page", page);
+			req.setAttribute("filter", filter);
 			req.setAttribute("boardList", boardList);
 			
 			RequestDispatcher rd =
