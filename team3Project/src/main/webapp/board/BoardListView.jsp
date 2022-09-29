@@ -16,6 +16,7 @@
 
 	<div id="rootDiv">
 		<jsp:include page="/header.jsp" />
+		<div id="wrapDiv">
 
 		<div id="topDiv">
 			<form action="./list" method="get">
@@ -97,7 +98,7 @@
 			</div>
 			<div style="clear: both;"></div>
 		</div>
-
+		</div>
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>

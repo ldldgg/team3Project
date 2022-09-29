@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 
-<link rel="stylesheet" href="./css/BoardSelectView.css"/>
+<link rel="stylesheet" href="./css/BoardSelectView.css?a"/>
 <script type="text/javascript" src="./js/BoardSelectView.js?abc"></script>
 
 </head>
@@ -16,6 +16,7 @@
 	<div id="rootDiv">
 		<jsp:include page="/header.jsp"/>
 		
+		<div id="wrapDiv">
 		<div id="titleDiv"><h2>Write</h2></div>
 		
 		<div id="tableDiv">
@@ -62,6 +63,7 @@
 				</table>
 				<input type="hidden" value="${board.bno}" name="no">
 			</form>
+		</div>
 		</div>
 		<jsp:include page="/footer.jsp"/>
 	</div>
