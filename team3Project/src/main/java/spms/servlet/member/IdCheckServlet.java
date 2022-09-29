@@ -52,6 +52,7 @@ public class IdCheckServlet extends HttpServlet{
 				req.setAttribute("notice", "이미 사용중인 아이디입니다");
 				req.setAttribute("idCk", true);
 				
+				
 				RequestDispatcher rd 
 				= req.getRequestDispatcher("./MemberForm.jsp");
 			

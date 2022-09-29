@@ -16,6 +16,13 @@
 	var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 	var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
 	
+	var boxConfirm = false;
+	var emailConfirm = false;
+	var idConfirm = false
+	var pwdConfirm = false;
+	var secondPwdConfirm = false;
+	var mnameConfirm = false;
+	var nicknameConfirm = false;
 	
 	function allFnc(){	//체크박스 전체선택메서드
 		var allCheckBox = document.getElementById("allSelect");
@@ -24,13 +31,16 @@
 		if(allCheckBox.checked == true){
 			for(var i = 0; i<etcCheckBox.length; i++){
 				etcCheckBox[i].checked = true;
-			}return;
+				boxConfirm = true;
+			}
+			return;
 		}else if(allCheckBox.checked == false){
 			for(var i = 0; i<etcCheckBox.length; i++){
 				etcCheckBox[i].checked = false;
 				}return;
-			}
+		}
 	}//allFnc 끝
+	
 
 	function inputEmailCheckFnc(){ //이메일 검사
 		var emailInput = document.getElementById('emailInput');
@@ -47,6 +57,7 @@
 			emailP.textContent = "이메일 양식을 확인하세요";
 		}else{
 			emailP.style.display = 'none';
+			emailConfirm = true;
 			
 		}
 	}//inputEmailCheckFnc 끝
@@ -97,6 +108,8 @@
 			pwdP.textContent = "영문과 숫자와 특수문자를 조합해서 입력해 주세요.";
 		}else{
 			pwdP.style.display = "none";
+			pwdConfirm = true;
+		
 		}
 	}//비밀번호 체크 끝
 	
@@ -110,6 +123,8 @@
 			secondPwdP.textContent = "비밀번호가 일치하지 않습니다.";
 		}else{
 			secondPwdP.style.display = "none";
+			secondPwdConfirm = true;
+		
 		}
 	}//비밀번호 확인검사 끝
 	
@@ -127,6 +142,7 @@
 			nameP.textContent = "이름은 한글, 또는 영문만 입력할 수 있습니다.";
 		}else{
 			nameP.style.display = "none";
+			mnameConfirm = true;
 		}
 	}
 	
@@ -144,13 +160,17 @@
 			nickNameP.textContent = "너무 짧습니다. 최소 2자 이상 입력하세요.";
 		}else{
 			nickNameP.style.display = "none";
+			nicknameConfirm = true;
 		}
 	}
 	
 	function joinFnc(){		//전체검사 후 회원가입 버튼 클릭시 doPost로 이동
-		
-		document.join_confirm.submit();	
-	
+		if(boxConfirm == true && idConfirm == true && pwdConfirm == true &&
+				secondPwdConfirm == true && mnameConfirm == true && nicknameConfirm == true){
+			document.join_confirm.submit();
+		}else {
+			Event.preventDefault();
+		}
 	}
 	
 	
@@ -172,7 +192,16 @@
 		
 			nameInput.addEventListener('blur', nameCheckFnc);
 			
-			nickNameInput.addEventListener('blur',  nickNameCheckFnc);
+			nickNameInput.addEventListener('blur', nickNameCheckFnc);
+			
+			document.body.addEventListener('click', function(){
+				if(boxConfirm == true && emailConfirm == true){
+					var joinBtn = document.getElementById("joinBtn");
+					
+						joinBtn.style.backgroundColor = "blue";
+						
+				}
+			}
 		
 		}//window.onload function 끝	
 		
