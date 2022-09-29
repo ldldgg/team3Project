@@ -18,7 +18,7 @@ public class BoardDao {
 		this.connection = conn;
 	}
 
-	public ArrayList<BoardDto> boardList(String filter) throws Exception{
+	public ArrayList<BoardDto> boardList(String filter, String selectFil) throws Exception{
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -30,11 +30,22 @@ public class BoardDao {
 					+ " ORDER BY BNO DESC";
 		}else {
 			filter = "%" + filter + "%";
-			
-			sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
-					+ " FROM BOARD"
-					+ " WHERE SUBJECT LIKE ?"
-					+ " ORDER BY BNO DESC";
+			if(selectFil.equals("subject")) {
+				sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
+						+ " FROM BOARD"
+						+ " WHERE SUBJECT LIKE ?"
+						+ " ORDER BY BNO DESC";
+			}else if(selectFil.equals("writer")) {
+				sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
+						+ " FROM BOARD"
+						+ " WHERE WRITER LIKE ?"
+						+ " ORDER BY BNO DESC";
+			}else if(selectFil.equals("content")) {
+				sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
+						+ " FROM BOARD"
+						+ " WHERE CONTENT LIKE ?"
+						+ " ORDER BY BNO DESC";
+			}
 		}
 		
 		try {
