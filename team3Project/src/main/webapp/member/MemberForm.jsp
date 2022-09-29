@@ -11,6 +11,11 @@
 <link rel='stylesheet' type='text/css' href='./css/MemberForm.css'>
 <script type="text/javaScript">
 
+	var pattern_num = /[0-9]/;	// 숫자 
+	var pattern_eng = /[a-zA-Z]/;	// 문자 
+	var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
+	var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
 	function allFnc(){	//체크박스 전체선택메서드
 	
 	var allCheckBox = document.getElementById("allSelect");
@@ -31,7 +36,7 @@
 		
 		var emailInput = document.getElementById('emailInput');
 		var emailP = document.getElementById('emailP');
-		var patterenKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+		
 		var emailIdx = emailInput.value.indexOf('@');
 		
 		emailInput.style.borderColor = "blue";
@@ -40,7 +45,7 @@
 			emailP.style.display = 'block';
 			emailP.style.color = 'red';
 			emailP.textContent = "이메일은 필수입력입니다";
-		}else if(emailIdx === -1 || patterenKor.test(emailInput.value)){
+		}else if(emailIdx === -1 || pattern_kor.test(emailInput.value)){
 			emailP.style.display = 'block';
 			emailP.style.color = 'red';
 			emailP.textContent = "이메일 양식을 확인하세요";
@@ -54,15 +59,13 @@
 		
 		var idInput = document.getElementById('idInput');
 		var idP = document.getElementById('idP');
-		var patterenEng = /[a-zA-Z]/;	//영문정규식
-		var patterenKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 		var idCk = false;
 				
 		if(idInput.value.length === 0){
 			idP.style.display = 'block';
 			idP.style.color = 'red';
 			idP.textContent = "아이디를 입력해 주세요";
-		}else if(!patterenEng.test(idInput.value.charAt(0))){
+		}else if(!pattern_eng.test(idInput.value.charAt(0))){
 			idP.style.display = 'block';
 			idP.style.color = 'red';
 			idP.textContent = "첫글자는 영문이어야 합니다.";
@@ -70,7 +73,7 @@
 			idP.style.display = 'block';
 			idP.style.color = 'red';
 			idP.textContent = "최소 4자 , 최대 20 자 입니다.";
-		}else if(patterenKor.test(idInput.value)){
+		}else if(pattern_kor.test(idInput.value)){
 			idP.style.display = 'block';
 			idP.style.color = 'red';
 			idP.textContent = "한글이 포함되어 있습니다.";
@@ -92,6 +95,11 @@
 		var pwdInput = document.getElementById('pwdInput');
 		var pwdP = document.getElementById('pwdP');
 		
+		if(pwdInput.length < 8){
+			pwdP.style.display = "block";
+			pwdP.style.color = "red";
+			pwdP.textContent = "너무 짧습니다. 최소 8자 이상 입력하세요.";
+		}
 		
 	}
 	
