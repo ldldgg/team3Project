@@ -19,9 +19,11 @@
 
 		<div id="topDiv">
 			<form action="./list" method="get">
-				<span id="filterDiv"> <input type="text" name="filter"
-					value="${filter}"> <input type="hidden" name="page"
-					value="1"> <input type="submit" value="검색">
+				<span id="filterDiv">
+					 <input class="filterForm" type="hidden" name="page"value="1">
+					 <input class="filterForm" type="text" name="filter" value="${filter}" 
+					 	size="30">
+					 <input class="filterForm filterBtn" type="submit" value="검색">
 				</span>
 			</form>
 			<h1 id="boardTitle">3팀 게시판</h1>
