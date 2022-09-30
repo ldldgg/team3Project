@@ -7,6 +7,10 @@ html, body{
 	margin-top: 0px;
 }
 
+body{
+	overflow-y: scroll;
+}
+
 
 #rootDiv {
 	box-sizing: border-box;
@@ -16,9 +20,10 @@ html, body{
 	background-color: #fff;
 }
 #wrapDiv{
-	padding-top: 20px;
 	min-height: 600px;
 	background-color: #fff;
+	box-sizing: border-box;
+	padding-top: 30px;
 }
 
 #titleDiv {

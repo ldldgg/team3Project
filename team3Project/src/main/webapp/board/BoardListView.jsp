@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>3팀 게시판</title>
 
-<link rel="stylesheet" href="./css/BoardListView.css?abc"/>
+<link rel="stylesheet" href="./css/BoardListView.css?ab"/>
 <script type="text/javascript" src="./js/BoardListView.js?a"></script>
 
 </head>
