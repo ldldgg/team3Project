@@ -77,6 +77,9 @@ public class BoardUpdateServlet extends HttpServlet {
 		String subject = req.getParameter("subject");
 		String content = req.getParameter("content");
 		String pwd = req.getParameter("pwd");
+		int page = Integer.parseInt(req.getParameter("page"));
+		String filter = req.getParameter("filter");
+		String selectFil = req.getParameter("selectFil");
 		
 		boardDto.setBno(no);
 		boardDto.setWriter(writer);
@@ -97,6 +100,9 @@ public class BoardUpdateServlet extends HttpServlet {
 			}else{
 				req.setAttribute("pwd", pwd);
 				req.setAttribute("board", boardDto);
+				req.setAttribute("page", page);
+				req.setAttribute("filter", filter);
+				req.setAttribute("selectFil", selectFil);
 				
 				RequestDispatcher rd =
 						req.getRequestDispatcher("./BoardSelectView.jsp");

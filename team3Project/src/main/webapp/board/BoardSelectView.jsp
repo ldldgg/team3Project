@@ -62,6 +62,9 @@
 					</tr>
 				</table>
 				<input type="hidden" value="${board.bno}" name="no">
+				<input type="hidden" value="${filter}" name="filter">
+				<input type="hidden" value="${selectFil}" name="selectFil">
+				<input type="hidden" value="${page}" name="page">
 			</form>
 		</div>
 		</div>
