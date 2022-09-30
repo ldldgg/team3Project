@@ -178,83 +178,85 @@ public class BoardDao {
 		
 	}
 
-	public int addBoard(BoardDto boardDto, String email, String pwd) throws Exception{
+	public int addBoard(BoardDto boardDto, String email) throws Exception{
 
-		PreparedStatement pstmtSel = null;
-		PreparedStatement pstmtUp = null;
-		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
 		
-		String sqlSel = "";
-		String sqlUp = "";
+		String sql = "";
 		
 		try {
-			sqlSel = "SELECT NICKNAME"
-					+ " FROM MEMBERS"
-					+ " WHERE EMAIL=?"
-					+ " AND PWD=?";
-			
-			pstmtSel = connection.prepareStatement(sqlSel);
-			
-			pstmtSel.setString(1, email);
-			pstmtSel.setString(2, pwd);
-			
-			rs = pstmtSel.executeQuery();
-			
-			if(rs.next()) {
-				sqlUp = "INSERT INTO BOARD"
+				sql = "INSERT INTO BOARD"
 						+ "(BNO, EMAIL, SUBJECT, WRITER, CONTENT, CRE_DATE, MOD_DATE)"
 						+ "VALUES(BOARD_BNO_SEQ.nextval,?,?,?,?,SYSDATE,SYSDATE)";
 				
-				pstmtUp = connection.prepareStatement(sqlUp);
+				pstmt = connection.prepareStatement(sql);
 				
-				pstmtUp.setString(1, email);
-				pstmtUp.setString(2, boardDto.getSubject());
-				pstmtUp.setString(3, boardDto.getWriter());
-				pstmtUp.setString(4, boardDto.getContent());
+				pstmt.setString(1, email);
+				pstmt.setString(2, boardDto.getSubject());
+				pstmt.setString(3, boardDto.getWriter());
+				pstmt.setString(4, boardDto.getContent());
 				
-				return pstmtUp.executeUpdate();
-			}
+				result = pstmt.executeUpdate();
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 			throw e;
 		} finally {
-			if(pstmtSel != null) {
+			if(pstmt != null) {
 				try {
-					pstmtSel.close();
+					pstmt.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-			if(pstmtUp != null) {
-				try {
-					pstmtUp.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if(rs != null) {
-				try {
-					rs.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
 			}
 		}
 		
-		return 0;
+		return result;
+	}
+	
+	public void boardViewCountUp(int no) throws Exception {
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "";
+		
+		try {
+			
+			sql = "UPDATE BOARD"
+					+ " SET VIEW_COUNT=VIEW_COUNT + 1"
+					+ " WHERE BNO=?";
+			
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+			throw e;
+		}finally {
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
 		
 	}
 	
 	public BoardDto boardSelectView(int no) throws Exception {
 		PreparedStatement pstmt = null;
-		PreparedStatement pstmtView = null;
-		
 		ResultSet rs = null;
 		
 		String sql = "";
-		String sqlView = "";
+		
 		
 		String writer = "";
 		String email = "";
@@ -268,15 +270,8 @@ public class BoardDao {
 			
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
+			
 			rs = pstmt.executeQuery();
-			
-			sqlView = "UPDATE BOARD"
-					+ " SET VIEW_COUNT=VIEW_COUNT + 1"
-					+ " WHERE BNO=?";
-			
-			pstmtView = connection.prepareStatement(sqlView);
-			pstmtView.setInt(1, no);
-			pstmtView.executeUpdate();
 			
 			BoardDto boardDto = new BoardDto();
 			
@@ -291,9 +286,10 @@ public class BoardDao {
 				boardDto.setEmail(email);
 				boardDto.setSubject(subject);
 				boardDto.setContent(content);
+				
+				return boardDto;
 			}
 			
-			return boardDto;
 			
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -303,13 +299,6 @@ public class BoardDao {
 			if(pstmt != null) {
 				try {
 					pstmt.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if(pstmtView != null) {
-				try {
-					pstmtView.close();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -324,7 +313,7 @@ public class BoardDao {
 			}
 		}
 		
-		
+		return null;
 	}
 
 	public int boardUpdate(BoardDto boardDto, String pwd) throws Exception {

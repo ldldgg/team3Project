@@ -40,6 +40,10 @@ public class BoardUpdateServlet extends HttpServlet {
 			
 			BoardDto boardDto = boardDao.boardSelectView(no);
 			
+			if(boardDto != null) {
+				boardDao.boardViewCountUp(no);
+			}
+			
 			req.setAttribute("board", boardDto);
 			req.setAttribute("page", page);
 			req.setAttribute("filter", filter);

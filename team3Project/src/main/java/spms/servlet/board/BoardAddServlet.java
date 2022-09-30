@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import spms.dao.AuthDao;
 import spms.dao.BoardDao;
 import spms.dto.BoardDto;
+import spms.dto.MemberDto;
 
 
 @WebServlet(value="/board/add")
@@ -53,10 +55,19 @@ public class BoardAddServlet extends HttpServlet {
 			boardDto.setWriter(writer);
 			boardDto.setContent(content);
 			
-			BoardDao boardDao = new BoardDao();
+			AuthDao authDao = new AuthDao();
+			authDao.setConnection(conn);
 			
+			BoardDao boardDao = new BoardDao();
 			boardDao.setConnection(conn);
-			int result = boardDao.addBoard(boardDto, email, pwd);
+			
+			MemberDto memberDto = authDao.authExist(email, pwd);
+			
+			int result = 0;
+			
+			if(memberDto != null) {
+				result = boardDao.addBoard(boardDto, email);
+			}
 			
 			if(result > 0) {
 				resp.sendRedirect("./list?page=1");
@@ -69,6 +80,8 @@ public class BoardAddServlet extends HttpServlet {
 				
 				rd.forward(req, resp);
 			}
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
