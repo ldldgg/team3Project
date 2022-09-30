@@ -5,7 +5,7 @@
 <div id='hearder' class="join_header header__login" style="height: 63px; margin-bottom: 20px;">
 	<img src="../img/danawalogo.png" style="background-color: #fff; margin-left: 0;" 
 		onclick="location.href='<%=request.getContextPath()%>/board/list?page=1';"/>
-	<div style="float: right;">
+	<div style="float: right; font-size: 14px;">
 		<c:if test="${member ne null}">
 			<p style="margin: 5px 10px; font-weight: bold; color: #000;">닉네임: ${member.nickname}</p>
 			<p style="margin-bottom: 0px; margin-top: 11px; margin-right: 10px;

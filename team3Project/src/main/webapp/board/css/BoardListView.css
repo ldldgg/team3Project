@@ -12,13 +12,21 @@ html, body{
 	width: 600px;
 	height: 100%;
 	margin: 0 auto;
-	padding: 20px;
+	padding: 0px 30px 30px 30px;
 	background-color: #fff;
 }
 #wrapDiv{
+	padding-top: 20px;
 	height: 470px;
-	
 }
+
+#hearder{
+	width: 440px;
+    margin: 0 auto;
+    padding: 105px 0 0;
+    position: relative;
+}
+
 #topDiv{
 	height: 50px;
 }

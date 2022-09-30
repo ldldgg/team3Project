@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 
-<link rel="stylesheet" href="./css/BoardSelectView.css?ab"/>
+<link rel="stylesheet" href="./css/BoardSelectView.css?abc"/>
 <script type="text/javascript" src="./js/BoardSelectView.js?abc"></script>
 
 </head>
