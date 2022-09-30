@@ -15,11 +15,8 @@
 	<!-- login_wrap -->
 	<div class="login_wrap">
 		<!-- header -->
-		<div class="header__login">
-			<img src="../img/danawalogo.png"> <a href="#"
-				class="guest_orders"> <span>비로그인 주문조회</span>
-			</a>
-		</div>
+		<jsp:include page="/header.jsp"></jsp:include>
+		
 
 		<!--// header -->
 		<div class="content__login container">
@@ -72,11 +69,7 @@
 			</form>
 		</div>
 		<!--// login_form -->
-		<div id="footer" class="footer footer__login footer__login--search">
-			<address>
-				Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-			</address>
-		</div>
+		<jsp:include page="/footer.jsp"></jsp:include>
 	</div>
 	<!--// login_wrap -->
 

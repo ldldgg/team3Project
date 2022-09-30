@@ -214,10 +214,8 @@
 
     <body class='body_join'>
          <div id='wrap' class='join_warp'>     
-            <div id='hearder' class='join_header'>
-               <div><a id='logo_a' href='#'><img src='../img/danawalogo.png'></a></div>
-               <h1>회원가입</h1>
-            </div>
+         <jsp:include page="/header.jsp"></jsp:include>
+
             <table class='tabTable'>
                <tr >
                   <td class='tabTd'>일반회원</td>
@@ -302,9 +300,7 @@
                <input type="button" id="joinBtn" class='join_btn' value='회원가입'>
             </form>
             
-            <div class='join_footer'>
-            Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-          </div>
+			<jsp:include page="/footer.jsp"></jsp:include>
             
          </div>
    </body> 

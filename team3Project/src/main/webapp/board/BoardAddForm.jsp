@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>게시글 작성</title>
 
-<link rel="stylesheet" href="./css/BoardAddForm.css?asd"/>
+<link rel="stylesheet" href="./css/BoardAddForm.css?as"/>
 <script type="text/javascript" src="./js/BoardAddForm.js?a"></script>
 
 </head>

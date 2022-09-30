@@ -15,9 +15,8 @@
 <body class="boby__login">
 	<div class="login_wrap">
 		<form action="./logout" method="post">
-			<div class="header__login">
-				<img src="../img/danawalogo.png">
-			</div>
+			<jsp:include page="/header.jsp"></jsp:include>
+			
 			<div style="font-size: 30px">
 				이름: ${member.mname} <br> 이메일: ${member.email} <br>
 			</div>
@@ -26,11 +25,7 @@
 			</button>
 		</form>
 
-		<div id="footer" class="footer footer__login footer__login--search">
-			<address>
-				Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-			</address>
-		</div>
+		<jsp:include page="/footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

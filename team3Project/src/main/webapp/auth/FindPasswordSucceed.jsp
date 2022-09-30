@@ -11,10 +11,8 @@
 
 <body class="body__login">
 	<div class="login_wrap">
-		<div class="header__login">
-			<a href="./login"> <img src="../img/danawalogo.png">
-			</a>
-		</div>
+		<jsp:include page="/header.jsp"></jsp:include>
+		
 		<div class="content__login container">
 			<div class="search__wrap">
 
@@ -44,11 +42,7 @@
 			</div>
 			</div>
 
-			<div id="footer" class="footer footer__login footer__login--search">
-				<address>
-					Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-				</address>
-		</div>
+			<jsp:include page="/footer.jsp"></jsp:include>
 	</div>
 	<!-- <script type="text/javascript" src='./js/FindIdForm.js?asd'></script> -->
 

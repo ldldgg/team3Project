@@ -16,10 +16,7 @@
 <body class="body__login">
 	<div class="login_wrap">
 		<form action="./findId" method="post">
-			<div class="header__login">
-				<a href="./login"> <img src="../img/danawalogo.png">
-			</a>
-			</div>
+			<jsp:include page="/header.jsp"></jsp:include>
 
 			<div class="container content__login content__login--search">
 				<div class="search__wrap">
@@ -63,11 +60,7 @@
 			</div>
 		</form>
 
-		<div id="footer" class="footer footer__login footer__login--search">
-			<address>
-				Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-			</address>
-		</div>
+		<jsp:include page="/footer.jsp"></jsp:include>
 
 	</div>
 
