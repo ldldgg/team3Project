@@ -1,3 +1,16 @@
+	
+	
+	function FindIdFnc() {
+	location.href='./findId';
+	}
+
+	function PasswordFnc() {
+	location.href='./findPassword';
+	}
+	
+	
+	
+	
 	var pwSearchObj = document.getElementById("pwSearch");
 	
 	pwSearchObj.addEventListener('click', function(event) {
@@ -11,6 +24,7 @@
 			inputIdObj.style.borderColor = 'red';
 			searchErrorM.style.color = 'red';
 			searchErrorM.textContent = "아이디를 입력해 주세요.";
+			inputIdObj.focus();
 			}
 			
 		});

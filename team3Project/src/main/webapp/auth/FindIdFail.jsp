@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
 
 <link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
 
@@ -17,7 +17,8 @@
 	<div class="login_wrap">
 		<form action="./findId" method="post">
 			<div class="header__login">
-				<img src="../img/danawalogo.png">
+				<a href="./login"> <img src="../img/danawalogo.png">
+			</a>
 			</div>
 
 			<div class="container content__login content__login--search">
@@ -70,7 +71,7 @@
 
 	</div>
 
-<script type="text/javascript" src='./js/FindIdForm.js?asd'></script>
+<script type="text/javascript" src='./js/FindIdForm.js'></script>
 
 </body>
 </html>

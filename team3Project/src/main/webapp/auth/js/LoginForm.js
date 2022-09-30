@@ -8,11 +8,13 @@
 			document.getElementById("loginInputPwd").className = 'input_wrap';
 			document.getElementById("loginInputId").className += ' error';
 			errorM.textContent = "아이디를 입력해 주세요";
+			document.getElementById("inputId").focus();
 		}else if (pwObj == "") {
 			document.getElementById("loginInputId").className = 'input_wrap';
 			event.preventDefault();
 			document.getElementById("loginInputPwd").className += ' error';
 			errorM.innerHTML = "패스워드를 입력하세요";
+			document.getElementById("inputPwd").focus();
 		} 
 	}
 		

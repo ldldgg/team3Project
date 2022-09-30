@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
 
 <link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
 
@@ -54,7 +54,7 @@
 
 						</div>
 						<input type="submit" id ="idSearch"
-							class="search__button btn_login asd" value="찾기">
+							class="search__button btn_login asd" value="확인">
 						<!-- 						<strong>확인</strong> -->
 						<!-- 						</button> -->
 
@@ -74,7 +74,7 @@
 
 	</div>
 
-<script type="text/javascript" src='./js/FindIdForm.js?asd'></script>
+<script type="text/javascript" src='./js/FindIdForm.js'></script>
 
 </body>
 </html>

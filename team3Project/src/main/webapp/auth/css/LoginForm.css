@@ -36,6 +36,11 @@ input:focus::placeholder {
     cursor: pointer;
 }
 
+.search__tab-button--select h2 {
+    color: #2964E0;
+    font-weight: bold;
+}
+
 .guest_orders {
 	position: absolute;
 	top: 0;
@@ -157,13 +162,19 @@ input:focus::placeholder {
 	cursor: pointer;
 }
 
-.err_txt {
+.err_txt{
 	margin-bottom: 10px;
 	color: #e53b38;
 	font-size: 13px;
 	letter-spacing: -.02em;
 }
 
+.err_txt2{
+	margin-bottom: 10px;
+	color: #e53b38;
+	font-size: 13px;
+	letter-spacing: -.02em;
+}
 body {
 	width: 100%;
 	display: flex;

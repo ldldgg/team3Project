@@ -6,6 +6,7 @@
 
 <link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
 
+<title>아이디 찾기</title>
 
 </head>
 
@@ -34,7 +35,7 @@
 
 					</div>
 					<div style="font-size: 16px; color: #333; text-align: center; padding: 46px 0px; line-height: 26px;">	
- 						<p>회원님의 아이디는 : <span style="color: blue;">${id}</span> 입니다  </p>
+ 						<p>회원님의 아이디는   <span style="color: blue;">${id}</span> 입니다  </p>
  						
 						</div>			
 		<button class="search__button" onclick="location.href='./login'">
@@ -51,7 +52,7 @@
 
 			</div>
 
-<script type="text/javascript" src='./js/FindIdForm.js?asd'></script>
+<script type="text/javascript" src='./js/FindIdForm.js'></script>
 
 </body>
 </html>

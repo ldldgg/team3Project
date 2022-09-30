@@ -5,29 +5,28 @@
 <html>
 
 <link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
-
-
+<meta charset="UTF-8">
+<title>비밀번호 찾기</title>
 </head>
 
-	<body class="body__login">
-			<div class="login_wrap">
-			<div class="header__login">
-				<a href="./login">
-				<img src="../img/danawalogo.png" >
-				</a>
-			</div>
+<body class="body__login">
+	<div class="login_wrap">
+		<div class="header__login">
+			<a href="./login"> <img src="../img/danawalogo.png">
+			</a>
+		</div>
+		<div class="content__login container">
 			<div class="search__wrap">
 
 				<div class="search__tab">
-					<button type="button"
-						class="search__tab-button" role="tab"
+					<button type="button" class="search__tab-button" role="tab"
 						aria-selected="true" onclick="location.href='./findId'">
 						<h2>아이디 찾기</h2>
 					</button>
 
-					<button type="button" class="search__tab-button search__tab-button--select" role="tab"
-						aria-selected="false"
-						onclick="location.href='./findPassword'">
+					<button type="button"
+						class="search__tab-button search__tab-button--select" role="tab"
+						aria-selected="false" onclick="location.href='./findPassword'">
 						<h2>비밀번호 찾기</h2>
 					</button>
 
@@ -35,7 +34,7 @@
 				<div
 					style="font-size: 16px; color: #333; text-align: center; padding: 46px 0px; line-height: 26px;">
 					<p>
-						회원님의 비밀번호는 : <span style="color: blue;">${pwd}</span> 입니다
+						회원님의 비밀번호는   <span style="color: blue;">${pwd}</span> 입니다
 					</p>
 
 				</div>
@@ -43,15 +42,14 @@
 					<strong>로그인 하기</strong>
 				</button>
 			</div>
+			</div>
 
-		<div id="footer" class="footer footer__login footer__login--search">
-			<address>
-				Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
-			</address>
+			<div id="footer" class="footer footer__login footer__login--search">
+				<address>
+					Copyright © <strong>danawa</strong> Co., Ltd. All Rights Reserved.
+				</address>
 		</div>
-
-		</div>
-
+	</div>
 	<!-- <script type="text/javascript" src='./js/FindIdForm.js?asd'></script> -->
 
 </body>
