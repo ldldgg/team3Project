@@ -16,7 +16,8 @@ html, body{
 }
 #wrapDiv{
 	padding-top: 20px;
-	height: 470px;
+	min-height: 600px;
+	background-color: #fff;
 }
 
 #hearder{
