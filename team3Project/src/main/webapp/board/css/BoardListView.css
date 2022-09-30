@@ -82,7 +82,9 @@ body{
 #btnDiv {
 	text-align: center;
 }
-
+#tableDiv{
+	min-height: 370px;
+}
 .pageBtn{
 	background-color: #FFFFFF;
 	border: 1px solid #E6E6E6;
