@@ -7,7 +7,7 @@
 <title>로그인</title>
 <script type="text/javaScript" src='./js/LoginForm.js'></script>
 
-<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css?a'>
 </head>
 <body class="body__login">
 	<!-- login_wrap -->
@@ -15,7 +15,7 @@
 		<!-- header -->
 		<jsp:include page="/header.jsp"></jsp:include>
 		<!--// header -->
-		<div class="content__login">
+		<div class="content__login container">
 			<!-- login_form -->
 			<form class="login_form" action="./login" method="post">
 				<div class="select_area">

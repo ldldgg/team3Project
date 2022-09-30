@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 
-<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css?a'>
 <script type="text/javascript">
 	
 </script>

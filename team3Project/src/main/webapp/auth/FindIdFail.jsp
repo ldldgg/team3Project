@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 
-<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css?a'>
 
 
 </head>

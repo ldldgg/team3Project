@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 
-<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css?a'>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 </head>

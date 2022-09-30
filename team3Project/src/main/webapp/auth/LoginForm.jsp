@@ -7,7 +7,7 @@
 <title>로그인</title>
 <script type="text/javaScript" src='./js/LoginForm.js'></script>
 
-<link rel='stylesheet' type='text/css' href='./css/LoginForm.css'>
+<link rel='stylesheet' type='text/css' href='./css/LoginForm.css?a'>
 </head>
 <body class="body__login">
 	<input id="nullId" type="hidden" value="${id}">
