@@ -26,6 +26,7 @@ public class MemberAddServlet extends HttpServlet {
 		req.setAttribute("idCk", false);
 		req.setAttribute("email", "");
 		
+		
 		RequestDispatcher dispatcher = 
 				req.getRequestDispatcher("../member/MemberForm.jsp");
 		dispatcher.forward(req, res);

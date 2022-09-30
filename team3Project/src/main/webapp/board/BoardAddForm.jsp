@@ -18,6 +18,7 @@
 	<div id="rootDiv">
 		<jsp:include page="/header.jsp"/>
 	
+		<div id="wrapDiv">
 		<div id="titleDiv"><h2>Write</h2></div>
 		
 		<div id="tableDiv">
@@ -64,6 +65,7 @@
 					</tr>
 				</table>
 			</form>
+		</div>
 		</div>
 		<jsp:include page="/footer.jsp"/>
 	</div>

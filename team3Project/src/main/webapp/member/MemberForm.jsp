@@ -15,31 +15,37 @@
 	var pattern_eng = /[a-zA-Z]/;	// 문자 
 	var pattern_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 	var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-
+	
+	var boxConfirm = false;
+	var emailConfirm = false;
+	var idConfirm = false
+	var pwdConfirm = false;
+	var secondPwdConfirm = false;
+	var mnameConfirm = false;
+	var nicknameConfirm = false;
+	
 	function allFnc(){	//체크박스 전체선택메서드
-	
-	var allCheckBox = document.getElementById("allSelect");
-	var etcCheckBox = document.getElementsByClassName("checkBoxInput");
-	
-	if(allCheckBox.checked == true){
-		for(var i = 0; i<etcCheckBox.length; i++){
-			etcCheckBox[i].checked = true;
-		}return;
-	}else if(allCheckBox.checked == false){
-		for(var i = 0; i<etcCheckBox.length; i++){
-			etcCheckBox[i].checked = false;
-			}return;
+		var allCheckBox = document.getElementById("allSelect");
+		var etcCheckBox = document.getElementsByClassName("checkBoxInput");
+		
+		if(allCheckBox.checked == true){
+			for(var i = 0; i<etcCheckBox.length; i++){
+				etcCheckBox[i].checked = true;
+				boxConfirm = true;
+			}
+			return;
+		}else if(allCheckBox.checked == false){
+			for(var i = 0; i<etcCheckBox.length; i++){
+				etcCheckBox[i].checked = false;
+				}return;
 		}
 	}//allFnc 끝
+	
 
-	function inputEmailCheckFnc(){
-		
+	function inputEmailCheckFnc(){ //이메일 검사
 		var emailInput = document.getElementById('emailInput');
 		var emailP = document.getElementById('emailP');
-		
-		var emailIdx = emailInput.value.indexOf('@');
-		
-		emailInput.style.borderColor = "blue";
+		var emailIdx = emailInput.value.indexOf('@');	
 		
 		if(emailInput.value.length === 0){
 			emailP.style.display = 'block';
@@ -51,16 +57,16 @@
 			emailP.textContent = "이메일 양식을 확인하세요";
 		}else{
 			emailP.style.display = 'none';
+			emailConfirm = true;
 			
 		}
 	}//inputEmailCheckFnc 끝
 	
-	function inputIdCheckFnc(){
-		
+	function inputIdCheckFnc(){ //아이디검사
 		var idInput = document.getElementById('idInput');
 		var idP = document.getElementById('idP');
 		var idCk = false;
-				
+			
 		if(idInput.value.length === 0){
 			idP.style.display = 'block';
 			idP.style.color = 'red';
@@ -82,37 +88,89 @@
 			if(idCk == true){
 				console.log("ture");
 				idP.style.color = 'red';
-			
 			}else if(idCk == false){
-				
 				idP.style.color = 'blue';
-			
 			}
 		}
 	}//Id체크 끝
 	
-	function pwdCheckFnc(){
+	function pwdCheckFnc(){ //비밀번호검사
 		var pwdInput = document.getElementById('pwdInput');
 		var pwdP = document.getElementById('pwdP');
 		
-		if(pwdInput.length < 8){
+		if(pwdInput.value.length < 8){
 			pwdP.style.display = "block";
 			pwdP.style.color = "red";
 			pwdP.textContent = "너무 짧습니다. 최소 8자 이상 입력하세요.";
-		}
+		}else if(!pattern_spc.test(pwdInput.value) || !pattern_eng.test(pwdInput.value) || !pattern_num.test(pwdInput.value)){
+			pwdP.style.display = "block";
+			pwdP.style.color = "red";
+			pwdP.textContent = "영문과 숫자와 특수문자를 조합해서 입력해 주세요.";
+		}else{
+			pwdP.style.display = "none";
+			pwdConfirm = true;
 		
+		}
+	}//비밀번호 체크 끝
+	
+	function secondPwdCheckFnc(){ //비밀번호 확인 검사
+		var secondPwdInput = document.getElementById('secondPwdInput');
+		var secondPwdP = document.getElementById('secondPwdP');
+		
+		if(secondPwdInput.value != pwdInput.value){
+			secondPwdP.style.display = "block";
+			secondPwdP.style.color = "red";
+			secondPwdP.textContent = "비밀번호가 일치하지 않습니다.";
+		}else{
+			secondPwdP.style.display = "none";
+			secondPwdConfirm = true;
+		
+		}
+	}//비밀번호 확인검사 끝
+	
+	function nameCheckFnc(){ //이름검사
+		var nameInput = document.getElementById('nameInput');
+		var nameP = document.getElementById('nameP');
+		
+		if(nameInput.value.length > 16){
+			nameP.style.display = "block";
+			nameP.style.color = "red";
+			nameP.textContent = "한글 8자, 영문 16자까지 가능합니다.";
+		}else if(nameInput.value.length <= 16 && pattern_num.test(nameInput.value)){
+			nameP.style.display = "block";
+			nameP.style.color = "red";
+			nameP.textContent = "이름은 한글, 또는 영문만 입력할 수 있습니다.";
+		}else{
+			nameP.style.display = "none";
+			mnameConfirm = true;
+		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	function joinFnc(){		//회원가입 버튼 클릭시 doPost로 이동
+	function nickNameCheckFnc(){
+		var nickNameInput = document.getElementById('nickNameInput');
+		var nickNameP = document.getElementById('nickNameP');
 		
-		document.join_confirm.submit();	
+		if(nickNameInput.value.length > 16){
+			nickNameP.style.display = "block";
+			nickNameP.style.color = "red";
+			nickNameP.textContent = "한글 8자, 영문 16자까지 가능합니다.";
+		}else if(nickNameInput.value.length < 2){
+			nickNameP.style.display = "block";
+			nickNameP.style.color = "red";
+			nickNameP.textContent = "너무 짧습니다. 최소 2자 이상 입력하세요.";
+		}else{
+			nickNameP.style.display = "none";
+			nicknameConfirm = true;
+		}
+	}
 	
+	function joinFnc(){		//전체검사 후 회원가입 버튼 클릭시 doPost로 이동
+		if(boxConfirm == true && idConfirm == true && pwdConfirm == true &&
+				secondPwdConfirm == true && mnameConfirm == true && nicknameConfirm == true){
+			document.join_confirm.submit();
+		}else {
+			Event.preventDefault();
+		}
 	}
 	
 	
@@ -120,20 +178,33 @@
 			var allCheckBox = document.getElementById("allSelect");
 			allCheckBox.addEventListener('click', allFnc);
 			
-			var joinBtn = document.getElementById("joinBtn");
 			joinBtn.addEventListener('click', joinFnc);
 			
-			var emailInput = document.getElementById('emailInput');
 			emailInput.addEventListener('blur', inputEmailCheckFnc);
 			
-			var idInput = document.getElementById('idInput');
 			idInput.addEventListener('blur', inputIdCheckFnc);
 			
-			var pwdInput = document.getElementById('pwdInput');
-			idInput.addEventListener('blur', pwdCheckFnc);
+			pwdInput.addEventListener('blur', pwdCheckFnc);
+			
+			pwdInput.addEventListener('blur', pwdCheckFnc);
+			
+			secondPwdInput.addEventListener('blur', secondPwdCheckFnc);
 		
+			nameInput.addEventListener('blur', nameCheckFnc);
+			
+			nickNameInput.addEventListener('blur', nickNameCheckFnc);
+			
+			document.body.addEventListener('click', function(){
+				if(boxConfirm == true && emailConfirm == true){
+					var joinBtn = document.getElementById("joinBtn");
+					
+						joinBtn.style.backgroundColor = "blue";
+						
+				}
+			}
 		
 		}//window.onload function 끝	
+		
 </script>
 </head>
 
@@ -200,13 +271,13 @@
 		            
 		            <div class='password_input'>
 		               <label>비밀번호</label>
-		               <input id='pwdInput' type='text' placeholder='숫자, 영문, 특수문자 포함 최소 8자 이상'>
+		               <input id='pwdInput' type='password' value="" placeholder='숫자, 영문, 특수문자 포함 최소 8자 이상'>
 		               <p id='pwdP' style="display: none"></p>
 		            </div>
 		            
 		            <div class='ck_password_input'>
 		               <label>비밀번호 확인</label>
-		               <input id='secondPwdInput' type='text' name='pwd' placeholder='숫자, 영문, 특수문자 포함 최소 8자 이상'>
+		               <input id='secondPwdInput' type='password' name='pwd' placeholder='숫자, 영문, 특수문자 포함 최소 8자 이상'>
 		               <p id='secondPwdP' style="display: none"></p>
 		            </div>
 		            

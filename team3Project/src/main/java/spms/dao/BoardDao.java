@@ -3,10 +3,8 @@ package spms.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 import spms.dto.BoardDto;
 
@@ -17,33 +15,122 @@ public class BoardDao {
 	public void setConnection(Connection conn) {
 		this.connection = conn;
 	}
+	
+	public int boardAllNum(String filter, String selectFil) throws Exception{
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		Boolean filterOn = false;
+		
+		int boardAllNum = 0;
+		String sql = "";
+		
+		sql = "SELECT COUNT(*) NUM"
+			+ " FROM BOARD";
+		
+		if(filter != null && !filter.isEmpty()) {
+			filterOn = true;
+			filter = "%" + filter + "%";
+			
+			if(selectFil.equals("subject")) {
+				
+				sql += " WHERE SUBJECT LIKE ?";
+				
+			}else if(selectFil.equals("writer")) {
+				
+				sql += " WHERE WRITER LIKE ?";
+				
+			}else if(selectFil.equals("content")) {
+				
+				sql += " WHERE CONTENT LIKE ?";
+				
+			}
+		}
+		
+		try {
+			pstmt = connection.prepareStatement(sql);
+			
+			if(filterOn) {
+				pstmt.setString(1, filter);
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				boardAllNum = rs.getInt("NUM");
+			}
+			
+			return boardAllNum;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
 
-	public ArrayList<BoardDto> boardList(String filter) throws Exception{
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
+	}
+
+	public ArrayList<BoardDto> boardList(int page, String filter, String selectFil) throws Exception{
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "";
-		if(filter == null) {
-			sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
-					+ " FROM BOARD"
-					+ " ORDER BY BNO DESC";
-		}else {
+		Boolean filterOn = false;
+		int pageStart = (page-1)*10 + 1;
+		int pageEnd = page*10;
+		
+		String sql = "SELECT *"
+				+ " FROM (SELECT ROWNUM RNUM, BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
+				+ " FROM BOARD";
+		
+		if(filter != null && !filter.isEmpty()) {
+			filterOn = true;
 			filter = "%" + filter + "%";
 			
-			sql = "SELECT BNO, SUBJECT, WRITER, CONTENT, CRE_DATE, VIEW_COUNT"
-					+ " FROM BOARD"
-					+ " WHERE SUBJECT LIKE ?"
-					+ " ORDER BY BNO DESC";
+			if(selectFil.equals("subject")) {
+				
+				sql += " WHERE SUBJECT LIKE ?";
+				
+			}else if(selectFil.equals("writer")) {
+				
+				sql += " WHERE WRITER LIKE ?";
+				
+			}else if(selectFil.equals("content")) {
+				
+				sql += " WHERE CONTENT LIKE ?";
+				
+			}
 		}
 		
+		sql += " ORDER BY BNO DESC)"
+				+ " WHERE RNUM >= ?"
+				+ " AND RNUM <= ?";
+		
 		try {
-			
 			pstmt = connection.prepareStatement(sql);
 			
-			if(filter != null) {
-				pstmt.setString(1, filter);
+			int colIndex = 1;
+			
+			if(filterOn){
+				pstmt.setString(colIndex++, filter);
 			}
+				pstmt.setInt(colIndex++, pageStart);
+				pstmt.setInt(colIndex, pageEnd);
+			
 			
 			rs = pstmt.executeQuery();
 			

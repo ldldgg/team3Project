@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>게시글 수정</title>
 
-<link rel="stylesheet" href="./css/BoardSelectView.css"/>
+<link rel="stylesheet" href="./css/BoardSelectView.css?a"/>
 <script type="text/javascript" src="./js/BoardSelectView.js?abc"></script>
 
 </head>
@@ -16,6 +16,7 @@
 	<div id="rootDiv">
 		<jsp:include page="/header.jsp"/>
 		
+		<div id="wrapDiv">
 		<div id="titleDiv"><h2>Write</h2></div>
 		
 		<div id="tableDiv">
@@ -56,12 +57,13 @@
 							<input id="submit" type="submit" value="Save">
 							<input id="delete" type="submit" value="Delete" formaction="./delete">
 							<input type="button" value="Go to Main"
-								onclick="location.href='./list?page=1'">
+								onclick="location.href='./list?filter=${filter}&selectFil=${selectFil}&page=${page}'">
 						</td>
 					</tr>
 				</table>
 				<input type="hidden" value="${board.bno}" name="no">
 			</form>
+		</div>
 		</div>
 		<jsp:include page="/footer.jsp"/>
 	</div>

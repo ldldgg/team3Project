@@ -27,6 +27,18 @@ public class MemberDto {
 		this.cre_date = cre_date;
 		this.mod_date = mod_date;
 	}
+	
+	public MemberDto(int mno, String id, String email, String mname, String nickname, String cre_date,
+			String mod_date) {
+		super();
+		this.mno = mno;
+		this.id = id;
+		this.email = email;
+		this.mname = mname;
+		this.nickname = nickname;
+		this.cre_date = cre_date;
+		this.mod_date = mod_date;
+	}
 
 	public int getMno() {
 		return mno;

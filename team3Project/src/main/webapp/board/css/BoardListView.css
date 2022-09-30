@@ -14,7 +14,13 @@ html, body{
 	padding: 20px;
 	background-color: #fff;
 }
-
+#wrapDiv{
+	height: 470px;
+	
+}
+#topDiv{
+	height: 50px;
+}
 #titleTr {
 	background-color: #F1F1F3;
 }
@@ -22,10 +28,12 @@ html, body{
 	display: inline;
 }
 #filterDiv{
-/* 	display: inline; */
+	box-sizing: border-box;
 	float: right;
-	background-color: black;
-/* 	text-align: right; */
+}
+.filterForm{
+	margin-top: 20px;
+	margin-bottom: 0px;
 }
 #titleTh {
 	width: 400px;
@@ -66,7 +74,7 @@ html, body{
 	color: #585858;
 	font-weight: bold;
 }
-.moveBtn{
+.moveBtn, .filterBtn{
 	height: 25px;
 	background-color: #FFFFFF;
 	border: 1px solid #A4A4A4;
